@@ -23,6 +23,7 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="common" />
+        <module name="Common" />
         <module name="Data Access Library" />
         <module name="Web Service" />
       </profile>
