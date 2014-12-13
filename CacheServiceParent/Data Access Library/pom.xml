@@ -7,6 +7,7 @@
         <groupId>com.unsa.pmf.ws</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+    <name>Data Access Library</name>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>dal</artifactId>

@@ -10,7 +10,9 @@
     <modules>
         <module>Web Service</module>
         <module>Data Access Library</module>
+        <module>Common</module>
     </modules>
+    <name>Cache Service Parent</name>
     <packaging>pom</packaging>
 
 </project>
