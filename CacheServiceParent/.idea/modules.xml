@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/CacheServiceParent.iml" filepath="$PROJECT_DIR$/CacheServiceParent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Data Access Library/Data Access Library.iml" filepath="$PROJECT_DIR$/Data Access Library/Data Access Library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Web Service/Web Service.iml" filepath="$PROJECT_DIR$/Web Service/Web Service.iml" />
+    </modules>
+  </component>
+</project>
