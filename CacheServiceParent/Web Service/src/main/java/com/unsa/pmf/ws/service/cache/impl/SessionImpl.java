@@ -7,7 +7,6 @@ import com.unsa.pmf.ws.service.Session;
  */
 public class SessionImpl implements Session {
 
-    @Override
     public boolean isSessionValid() {
         return false;
     }

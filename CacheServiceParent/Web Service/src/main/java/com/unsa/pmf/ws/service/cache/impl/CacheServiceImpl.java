@@ -14,13 +14,11 @@ public class CacheServiceImpl implements CacheService{
 	 */
 	public CacheServiceImpl(){}
 
-	@Override
 	@WebMethod
 	public boolean isServiceStarted(@WebParam(name = "serviceName") String serviceName) {
 		return false;
 	}
 
-	@Override
 	@WebMethod
 	public SessionImpl startService(@WebParam(name = "serviceName") String serviceName) {
 		return null;

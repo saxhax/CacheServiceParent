@@ -7,11 +7,11 @@
 
     <servlet>
         <servlet-name>Service</servlet-name>
-        <servlet-class>com.unsa.pmf.ws.service.cache.CacheService</servlet-class>
+        <servlet-class>com.unsa.pmf.ws.service.cache.impl.CacheServiceImpl</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>Service</servlet-name>
-        <url-pattern>/Service</url-pattern>
+        <servlet-name>CacheServiceImpl</servlet-name>
+        <url-pattern>/*</url-pattern>
     </servlet-mapping>
 </web-app>
