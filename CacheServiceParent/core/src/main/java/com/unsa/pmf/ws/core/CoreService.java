@@ -7,13 +7,14 @@ import com.unsa.pmf.ws.common.config.Configurations;
 import com.unsa.pmf.ws.common.filter.Filter;
 import com.unsa.pmf.ws.common.data.Data;
 import com.unsa.pmf.ws.common.session.SessionFactory;
+import com.unsa.pmf.ws.dal.Dal;
 
 public class CoreService {
 
 	public Session createCacheService(Configurations configurations){
-		//Dal dal = new Dal();
+		Dal dal = new Dal();
 		Session session = SessionFactory.getSession(configurations.getName());
-		//dal.storeSession(session);
+		dal.storeSession(session);
 		return session;
 	}
 	

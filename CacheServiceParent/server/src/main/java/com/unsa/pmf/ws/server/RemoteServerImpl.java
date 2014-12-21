@@ -11,6 +11,7 @@ import com.unsa.pmf.ws.common.data.Data;
 import com.unsa.pmf.ws.common.filter.Filter;
 import com.unsa.pmf.ws.common.rmi.RemoteServer;
 import com.unsa.pmf.ws.common.session.Session;
+import com.unsa.pmf.ws.core.CoreService;
 
 public final class RemoteServerImpl extends UnicastRemoteObject implements RemoteServer{
 	
@@ -31,8 +32,8 @@ public final class RemoteServerImpl extends UnicastRemoteObject implements Remot
 	}
 	
 	public Session createCacheService(Configurations configurations) throws RemoteException{
-		// TODO Auto-generated method stub
-		return null;
+		CoreService service = new CoreService();
+		return service.createCacheService(configurations);
 	}
 
 	public Session getCacheService(String name) throws RemoteException{
