@@ -11,6 +11,7 @@
 		<module>Common</module>
 		<module>wservice</module>
 		<module>wsclient</module>
+		<module>core</module>
 	</modules>
 	<name>Cache Service Parent</name>
 	<packaging>pom</packaging>
