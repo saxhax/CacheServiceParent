@@ -1,3 +1,8 @@
-*.iml
+*.iml*
 *target*
 *.idea*
+*.class
+*.project
+*.classpath
+*.settings*
+*.metadata*
