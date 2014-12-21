@@ -28,7 +28,7 @@ public interface CacheService{
 	 * 		Service session
 	 */
 	@WebMethod
-	public Session getCacheService(String name);
+	public Session getCacheServiceSession(String name);
 
 	/**
 	 * Put new values to cache
@@ -48,5 +48,10 @@ public interface CacheService{
 	@WebMethod
 	public Data getValues(Session session, Filter filter);
 	
-	
+	/**
+	 * Close session
+	 * @param session
+	 */
+	@WebMethod
+	public void closeSession(Session session);
 }

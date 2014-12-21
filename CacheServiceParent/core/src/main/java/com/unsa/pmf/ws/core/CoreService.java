@@ -5,19 +5,27 @@ import java.util.List;
 import com.unsa.pmf.ws.core.config.Configurations;
 import com.unsa.pmf.ws.core.data.Data;
 import com.unsa.pmf.ws.core.filter.Filter;
+import com.unsa.pmf.ws.core.session.Session;
+import com.unsa.pmf.ws.core.session.SessionFactory;
 
 public class CoreService {
 
-	public void createCacheService(Configurations configurations){
-		
+	public Session createCacheService(Configurations configurations){
+		return SessionFactory.getSession(configurations.getName());
+	}
+	
+	public Session getCacheService(String name){
+		return SessionFactory.getSession(name);
 	}
 
-	public void putValues(Configurations configurations, List<String> values){
-		
+	public Session putValues(Session session,  List<String> values){
+		return SessionFactory.getSession(session.getSessionName());
 	}
 
-	public Data getValues(Configurations configurations, Filter filter){
-		
+	public Data getValues(Session session, Filter filter){
 		return new Data();
+	}
+
+	public void closeSession(Session session) {
 	}
 }

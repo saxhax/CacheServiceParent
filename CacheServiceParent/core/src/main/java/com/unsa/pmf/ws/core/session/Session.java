@@ -9,15 +9,6 @@ public class Session {
 	private String sessionName;
 	private boolean sessionValid;
 
-	public boolean isValid() {
-    	if (sessionId == null || sessionId.length() == 0){
-    		sessionValid = false;
-    	} else {
-    		sessionValid = true;
-    	}
-		return sessionValid;
-	}
-
 	public String getSessionId() {
 		return sessionId;
 	}
@@ -35,6 +26,11 @@ public class Session {
 	}
 
 	public boolean isSessionValid() {
+    	if (sessionId == null || sessionId.length() == 0){
+    		sessionValid = false;
+    	} else {
+    		sessionValid = true;
+    	}
 		return sessionValid;
 	}
 

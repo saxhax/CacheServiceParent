@@ -6,4 +6,5 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
   <artifactId>wsclient</artifactId>
+  <name>Web Service Client</name>
 </project>
