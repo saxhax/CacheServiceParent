@@ -1,8 +1,8 @@
 package com.unsa.pmf.ws.service.validate;
 
-import com.unsa.pmf.ws.core.config.Configurations;
-import com.unsa.pmf.ws.core.session.Session;
-import com.unsa.pmf.ws.core.session.SessionFactory;
+import com.unsa.pmf.ws.common.session.Session;
+import com.unsa.pmf.ws.common.config.Configurations;
+import com.unsa.pmf.ws.common.session.SessionFactory;
 
 public class Validate {
 	

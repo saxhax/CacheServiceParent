@@ -1,6 +1,7 @@
 
 package com.unsa.pmf.ws.service.cache.impl;
 
+import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
@@ -8,8 +9,11 @@ import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
+import com.unsa.pmf.ws.service.cache.Configurations;
+import com.unsa.pmf.ws.service.cache.Data;
+import com.unsa.pmf.ws.service.cache.Filter;
 import com.unsa.pmf.ws.service.cache.ObjectFactory;
-import com.unsa.pmf.ws.service.cache.SessionImpl;
+import com.unsa.pmf.ws.service.cache.Session;
 
 
 /**
@@ -29,28 +33,88 @@ public interface CacheService {
      * 
      * @param arg0
      * @return
-     *     returns com.unsa.pmf.ws.service.cache.SessionImpl
+     *     returns com.unsa.pmf.ws.service.cache.Session
+     * @throws Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "startService", targetNamespace = "http://cache.service.ws.pmf.unsa.com/", className = "com.unsa.pmf.ws.service.cache.StartService")
-    @ResponseWrapper(localName = "startServiceResponse", targetNamespace = "http://cache.service.ws.pmf.unsa.com/", className = "com.unsa.pmf.ws.service.cache.StartServiceResponse")
-    public SessionImpl startService(
+    @RequestWrapper(localName = "getCacheServiceSession", targetNamespace = "http://cache.service.ws.pmf.unsa.com/", className = "com.unsa.pmf.ws.service.cache.GetCacheServiceSession")
+    @ResponseWrapper(localName = "getCacheServiceSessionResponse", targetNamespace = "http://cache.service.ws.pmf.unsa.com/", className = "com.unsa.pmf.ws.service.cache.GetCacheServiceSessionResponse")
+    public Session getCacheServiceSession(
         @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
+        String arg0)
+        throws Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @throws Exception
+     */
+    @WebMethod
+    @RequestWrapper(localName = "closeSession", targetNamespace = "http://cache.service.ws.pmf.unsa.com/", className = "com.unsa.pmf.ws.service.cache.CloseSession")
+    @ResponseWrapper(localName = "closeSessionResponse", targetNamespace = "http://cache.service.ws.pmf.unsa.com/", className = "com.unsa.pmf.ws.service.cache.CloseSessionResponse")
+    public void closeSession(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Session arg0)
+        throws Exception
+    ;
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns com.unsa.pmf.ws.service.cache.Data
+     * @throws Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getValues", targetNamespace = "http://cache.service.ws.pmf.unsa.com/", className = "com.unsa.pmf.ws.service.cache.GetValues")
+    @ResponseWrapper(localName = "getValuesResponse", targetNamespace = "http://cache.service.ws.pmf.unsa.com/", className = "com.unsa.pmf.ws.service.cache.GetValuesResponse")
+    public Data getValues(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Session arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        Filter arg1)
+        throws Exception
+    ;
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns com.unsa.pmf.ws.service.cache.Session
+     * @throws Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "putValues", targetNamespace = "http://cache.service.ws.pmf.unsa.com/", className = "com.unsa.pmf.ws.service.cache.PutValues")
+    @ResponseWrapper(localName = "putValuesResponse", targetNamespace = "http://cache.service.ws.pmf.unsa.com/", className = "com.unsa.pmf.ws.service.cache.PutValuesResponse")
+    public Session putValues(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Session arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        List<String> arg1)
+        throws Exception
+    ;
 
     /**
      * 
      * @param arg0
      * @return
-     *     returns boolean
+     *     returns com.unsa.pmf.ws.service.cache.Session
+     * @throws Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "isServiceStarted", targetNamespace = "http://cache.service.ws.pmf.unsa.com/", className = "com.unsa.pmf.ws.service.cache.IsServiceStarted")
-    @ResponseWrapper(localName = "isServiceStartedResponse", targetNamespace = "http://cache.service.ws.pmf.unsa.com/", className = "com.unsa.pmf.ws.service.cache.IsServiceStartedResponse")
-    public boolean isServiceStarted(
+    @RequestWrapper(localName = "createCacheService", targetNamespace = "http://cache.service.ws.pmf.unsa.com/", className = "com.unsa.pmf.ws.service.cache.CreateCacheService")
+    @ResponseWrapper(localName = "createCacheServiceResponse", targetNamespace = "http://cache.service.ws.pmf.unsa.com/", className = "com.unsa.pmf.ws.service.cache.CreateCacheServiceResponse")
+    public Session createCacheService(
         @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
+        Configurations arg0)
+        throws Exception
+    ;
 
 }
