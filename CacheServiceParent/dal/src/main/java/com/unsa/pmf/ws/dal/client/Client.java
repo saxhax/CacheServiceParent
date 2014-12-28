@@ -1,5 +1,7 @@
 package com.unsa.pmf.ws.dal.client;
 
+import java.util.Date;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -23,5 +25,16 @@ public class Client {
 		tx.begin();
     	manager.remove(session);
         tx.commit();
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(new Date());
+		Client client = new Client();
+		for (int i = 0; i < 1000; i++){
+			Session session = new Session();
+			session.setName("name");
+			client.storeSession(session);
+		}
+		System.out.println(new Date());
 	}
 }
