@@ -140,11 +140,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ArrayList }
+     * 
+     */
+    public ArrayList createArrayList() {
+        return new ArrayList();
+    }
+
+    /**
      * Create an instance of {@link Data }
      * 
      */
     public Data createData() {
         return new Data();
+    }
+
+    /**
+     * Create an instance of {@link Row }
+     * 
+     */
+    public Row createRow() {
+        return new Row();
     }
 
     /**

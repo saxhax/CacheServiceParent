@@ -37,23 +37,27 @@ public final class RemoteServerImpl extends UnicastRemoteObject implements Remot
 	}
 
 	public Session getCacheService(String name) throws RemoteException{
-		
-		return new Session();
+		CoreService service = new CoreService();
+		return service.getCacheService(name);
 	}
 
 	public Session putValues(Session session, List<String> values) throws RemoteException{
-		// TODO Auto-generated method stub
-		return null;
+		CoreService service = new CoreService();
+		return service.putValues(session, values);
 	}
 
 	public Data getValues(Session session, Filter filter) throws RemoteException{
-		// TODO Auto-generated method stub
-		return null;
+		CoreService service = new CoreService();
+		return service.getValues(session, filter);
 	}
 
 	public Boolean closeSession(Session session) throws RemoteException{
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			CoreService service = new CoreService();
+			service.closeSession(session);
+			return true;
+		} catch (Exception e){
+			return false;
+		}
 	}
-
 }

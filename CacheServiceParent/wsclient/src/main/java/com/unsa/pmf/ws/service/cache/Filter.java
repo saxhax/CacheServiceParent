@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="conditions" type="{http://cache.service.ws.pmf.unsa.com/}condition" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="specificData" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,12 +31,15 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "filter", propOrder = {
-    "conditions"
+    "conditions",
+    "specificData"
 })
 public class Filter {
 
     @XmlElement(nillable = true)
     protected List<Condition> conditions;
+    @XmlElement(nillable = true)
+    protected List<String> specificData;
 
     /**
      * Gets the value of the conditions property.
@@ -66,4 +70,35 @@ public class Filter {
         return this.conditions;
     }
 
+    /**
+     * Gets the value of the specificData property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the specificData property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getSpecificData().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * 
+     * 
+     */
+    public List<String> getSpecificData() {
+        if (specificData == null) {
+            specificData = new ArrayList<String>();
+        }
+        return this.specificData;
+    }
+    public void setSpecificData(List<String> a) {
+    	specificData = a;
+    }
 }

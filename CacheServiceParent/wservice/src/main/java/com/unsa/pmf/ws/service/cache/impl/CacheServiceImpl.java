@@ -26,7 +26,7 @@ public class CacheServiceImpl implements CacheService{
 
 	@WebMethod
 	public Session createCacheService(Configurations configurations) throws Exception{
-		if (Validate.validateConfiguration(configurations)){
+		if (!Validate.validateConfiguration(configurations)){
 			return new Session();
 		}
 		RemoteServer service = getRemoteServer();
@@ -41,7 +41,7 @@ public class CacheServiceImpl implements CacheService{
 
 	@WebMethod
 	public Session putValues(Session session, List<String> values) throws Exception {
-		if (Validate.validateSession(session)){
+		if (!Validate.validateSession(session)){
 			return new Session();
 		}
 		RemoteServer service = getRemoteServer();
@@ -50,7 +50,7 @@ public class CacheServiceImpl implements CacheService{
 
 	@WebMethod
 	public Data getValues(Session session, Filter filter) throws Exception{
-		if (Validate.validateSession(session)){
+		if (!Validate.validateSession(session)){
 			return new Data();
 		}
 		RemoteServer service = getRemoteServer();
@@ -59,7 +59,7 @@ public class CacheServiceImpl implements CacheService{
 
 	@WebMethod
 	public void closeSession(Session session) throws Exception{
-		if (Validate.validateSession(session)){
+		if (!Validate.validateSession(session)){
 			return;
 		}
 		RemoteServer service = getRemoteServer();

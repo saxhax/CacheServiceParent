@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.unsa.pmf.ws.common.data.Data;
+import com.unsa.pmf.ws.common.data.Row;
 import com.unsa.pmf.ws.common.filter.Filter;
 import com.unsa.pmf.ws.common.session.Session;
 import com.unsa.pmf.ws.dal.client.Client;
@@ -61,6 +62,11 @@ public class Dal {
 	 */
 	public Data get(Filter filter, String collectionName) throws Exception{
 		MongoBC bc = new MongoBC();
-		return new Data(bc.get(filter.getData(), collectionName));
+		List<List<String>> listData = bc.get(filter.getSpecificData(), collectionName);
+		Data data = new Data();
+		for (List<String> list : listData) {
+			data.getSpecificValues().add(new Row((ArrayList) list));
+		}
+		return data;
 	}
 }

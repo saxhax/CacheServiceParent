@@ -91,6 +91,6 @@ public class CoreService {
 		service.putValues(session, values);
 		Filter filter = new Filter();
 		Data data = service.getValues(session, filter);
-		System.out.println(data.getData());
+		System.out.println(data.getSpecificValues());
 	}
 }

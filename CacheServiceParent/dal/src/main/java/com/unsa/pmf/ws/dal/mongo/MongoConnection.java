@@ -13,6 +13,8 @@ import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 
 public class MongoConnection {
+	private static final String DEFAULT_DB = "mydb"; 
+	private static MongoClient mongoClient;
 	
 	/**
 	 * Store data to database
@@ -87,7 +89,16 @@ public class MongoConnection {
 	 * @throws UnknownHostException
 	 */
 	private DB getDB() throws UnknownHostException {
-		MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
-		return mongoClient.getDB( "mydb" );
+		try {
+			if (mongoClient != null && !mongoClient.isLocked()) {
+				return mongoClient.getDB(DEFAULT_DB);
+			} else {
+				mongoClient = new MongoClient( "localhost" , 27017 );
+				return mongoClient.getDB(DEFAULT_DB);
+			}
+		} catch (Exception e){
+			mongoClient = new MongoClient( "localhost" , 27017 );
+			return mongoClient.getDB(DEFAULT_DB);
+		}
 	}
 }
