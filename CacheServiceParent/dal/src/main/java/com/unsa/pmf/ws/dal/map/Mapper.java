@@ -1,16 +1,14 @@
 package com.unsa.pmf.ws.dal.map;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
+import com.unsa.pmf.ws.common.data.Set;
 import com.unsa.pmf.ws.common.session.Session;
 
 public class Mapper {
-	public static final String PREFIX = "key_";
 	
 	/**
 	 * Create session
@@ -41,33 +39,19 @@ public class Mapper {
 	 * @param data
 	 * @return
 	 */
-	public static BasicDBObject generateObject(List<String> data){
-		BasicDBObject object = new BasicDBObject();
-		int i = 0;
+	public static BasicDBObject generateObject(List<Set> data){
+		List<BasicDBObject> objects = new ArrayList<BasicDBObject>();
 		if (data != null && !data.isEmpty()){
-			for(String value : data){
-				object.put(PREFIX + i, value);
-				i++;
+			for(Set set : data){
+				BasicDBObject object = new BasicDBObject(); 
+				object.put(set.getKey(), set.getValue());
+				objects.add(object);
 			}
 		}
-		return object;
-	}
-	
-	/**
-	 * Create map
-	 * @param data
-	 * @return
-	 */
-	public static Map<String, String> generateMap(List<String> data){
-		Map<String, String> mappedData = new HashMap<String, String>();
-		int i = 0;
-		if (data != null && !data.isEmpty()){
-			for(String value : data){
-				mappedData.put(PREFIX + i, value);
-				i++;
-			}
-		}
-		return mappedData;
+
+		BasicDBObject query = new BasicDBObject();
+		query.put("$and", objects);
+		return query;
 	}
 	
 	/**
@@ -75,14 +59,14 @@ public class Mapper {
 	 * @param data
 	 * @return
 	 */
-	@SuppressWarnings("deprecation")
-	public static List<String> generateList(DBObject object){
-		List<String> data = new ArrayList<String>();
-		for(int i = 0; i < object.keySet().size(); i++){
+	public static List<Set> generateList(DBObject object){
+		List<Set> data = new ArrayList<Set>();
+		for (String key : object.keySet()){
 			try {
-				if (object.containsKey(PREFIX + i)){
-					data.add(object.get(PREFIX + i).toString());
-				}
+				Set set = new Set();
+				set.setKey(key);
+				set.setValue(object.get(key).toString());
+				data.add(set);
 			} catch(Exception e){
 				
 			}

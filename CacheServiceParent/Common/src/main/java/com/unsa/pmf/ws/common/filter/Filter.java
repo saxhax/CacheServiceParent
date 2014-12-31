@@ -3,29 +3,32 @@ package com.unsa.pmf.ws.common.filter;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import com.unsa.pmf.ws.common.data.Set;
+
 public class Filter implements Serializable{
 	private static final long serialVersionUID = -9064767939839400543L;
-	private ArrayList<Condition> conditions;
-	private ArrayList<String> specificData;
+	private Condition condition;
+	private ArrayList<Set> specificData;
 
 	public Filter(){}
 	
-	public Filter(ArrayList<String> specificData) {
+	public Filter(ArrayList<Set> specificData) {
 		this.specificData = specificData;
 	}
-	public ArrayList<Condition> getConditions() {
-		return conditions;
+
+	public Condition getCondition() {
+		return condition;
 	}
 
-	public void setConditions(ArrayList<Condition> conditions) {
-		this.conditions = conditions;
+	public void setCondition(Condition condition) {
+		this.condition = condition;
 	}
 
-	public ArrayList<String> getSpecificData() {
+	public ArrayList<Set> getSpecificData() {
 		return specificData;
 	}
 
-	public void setSpecificData(ArrayList<String> specificData) {
+	public void setSpecificData(ArrayList<Set> specificData) {
 		this.specificData = specificData;
 	}
 }

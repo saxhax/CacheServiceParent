@@ -3,9 +3,10 @@ package com.unsa.pmf.ws.dal.mongo;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import com.mongodb.DBObject;
+import com.unsa.pmf.ws.common.data.Set;
+import com.unsa.pmf.ws.common.filter.Filter;
 import com.unsa.pmf.ws.dal.map.Mapper;
 
 public class MongoBC {
@@ -15,10 +16,9 @@ public class MongoBC {
 	 * @param data
 	 * @throws UnknownHostException
 	 */
-	public void store(List<String> data, String collectionName) throws UnknownHostException{
+	public void store(List<Set> data, String collectionName) throws UnknownHostException{
 		MongoConnection connection = new MongoConnection();
-		Map<String, String> mappedData = Mapper.generateMap(data);
-		connection.storeData(mappedData, collectionName);
+		connection.storeData(data, collectionName);
 	}
 
 	/**
@@ -26,7 +26,7 @@ public class MongoBC {
 	 * @param data
 	 * @throws UnknownHostException
 	 */
-	public void remove(List<String> data, String collectionName) throws UnknownHostException{
+	public void remove(List<Set> data, String collectionName) throws UnknownHostException{
 		MongoConnection connection = new MongoConnection();
 		DBObject object = Mapper.generateObject(data);
 		connection.remove(object, collectionName);
@@ -49,9 +49,9 @@ public class MongoBC {
 	 * @return
 	 * @throws UnknownHostException 
 	 */
-	public List<List<String>> get(List<String> data, String collectionName) throws UnknownHostException{
-		List<List<String>> result = new ArrayList<List<String>>();
-		List<DBObject> list = new MongoConnection().get(Mapper.generateObject(data), collectionName);
+	public List<List<Set>> get(Filter filter, String collectionName) throws UnknownHostException{
+		List<List<Set>> result = new ArrayList<List<Set>>();
+		List<DBObject> list = new MongoConnection().get(Mapper.generateObject(filter.getSpecificData()), collectionName, filter.getCondition());
 		for (DBObject object : list){
 			result.add(Mapper.generateList(object));
 		}

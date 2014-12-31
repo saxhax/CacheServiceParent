@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.unsa.pmf.ws.common.config.Configurations;
 import com.unsa.pmf.ws.common.data.Data;
+import com.unsa.pmf.ws.common.data.Set;
 import com.unsa.pmf.ws.common.filter.Filter;
 import com.unsa.pmf.ws.common.rmi.RemoteServer;
 import com.unsa.pmf.ws.common.session.Session;
@@ -41,7 +42,7 @@ public final class RemoteServerImpl extends UnicastRemoteObject implements Remot
 		return service.getCacheService(name);
 	}
 
-	public Session putValues(Session session, List<String> values) throws Exception{
+	public Session putValues(Session session, List<Set> values) throws Exception{
 		CoreService service = new CoreService();
 		return service.putValues(session, values);
 	}

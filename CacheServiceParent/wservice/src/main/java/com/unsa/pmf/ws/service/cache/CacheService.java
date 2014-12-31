@@ -8,6 +8,7 @@ import javax.jws.WebService;
 import com.unsa.pmf.ws.common.session.Session;
 import com.unsa.pmf.ws.common.config.Configurations;
 import com.unsa.pmf.ws.common.data.Data;
+import com.unsa.pmf.ws.common.data.Set;
 import com.unsa.pmf.ws.common.filter.Filter;
 
 @WebService
@@ -37,7 +38,7 @@ public interface CacheService{
 	 * @return
 	 */
 	@WebMethod
-	public Session putValues(Session session, List<String> values) throws Exception;
+	public Session putValues(Session session, List<Set> values) throws Exception;
 	
 	/**
 	 * Get values with specific filter

@@ -4,26 +4,15 @@ import java.io.Serializable;
 
 public class Condition implements Serializable{
 
-	private int field;
-	private FilterType filterType;
-	private String value;
+	private static final long serialVersionUID = -8330868893701213040L;
+	private Integer limit = null;
 	
-	public int getField() {
-		return field;
+	public Condition(){}
+	
+	public Integer getLimit() {
+		return limit;
 	}
-	public void setField(int field) {
-		this.field = field;
-	}
-	public FilterType getFilterType() {
-		return filterType;
-	}
-	public void setFilterType(FilterType filterType) {
-		this.filterType = filterType;
-	}
-	public String getValue() {
-		return value;
-	}
-	public void setValue(String value) {
-		this.value = value;
+	public void setLimit(Integer limit) {
+		this.limit = limit;
 	}
 }

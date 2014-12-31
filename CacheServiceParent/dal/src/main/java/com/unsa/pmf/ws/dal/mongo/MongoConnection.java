@@ -3,7 +3,6 @@ package com.unsa.pmf.ws.dal.mongo;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -11,6 +10,8 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
+import com.unsa.pmf.ws.common.data.Set;
+import com.unsa.pmf.ws.common.filter.Condition;
 
 public class MongoConnection {
 	private static final String DEFAULT_DB = "mydb"; 
@@ -21,10 +22,10 @@ public class MongoConnection {
 	 * @param data
 	 * @throws UnknownHostException 
 	 */
-	public void storeData(Map<String, String> data, String collectionName) throws UnknownHostException{
+	public void storeData(List<Set> data, String collectionName) throws UnknownHostException{
 		BasicDBObject object = new BasicDBObject();
-		for(String key : data.keySet()){
-			object.put(key, data.get(key));
+		for(Set set : data){
+			object.put(set.getKey(), set.getValue());
 		}
 		store(object, collectionName);
 	}
@@ -53,9 +54,15 @@ public class MongoConnection {
 	 * @param collectionName
 	 * @throws UnknownHostException 
 	 */
-	public List<DBObject> get(BasicDBObject object, String collectionName) throws UnknownHostException{
+	public List<DBObject> get(BasicDBObject object, String collectionName, Condition condition) throws UnknownHostException{
 		List<DBObject> data = new ArrayList<DBObject>();
-		DBCursor cursor = getCollection(collectionName).find(object);
+		condition = condition == null ? new Condition() : condition;
+		DBCursor cursor;
+		if (condition.getLimit() == null) {
+			cursor = getCollection(collectionName).find(object);
+		} else {
+			cursor = getCollection(collectionName).find(object).limit(condition.getLimit());
+		}
 		while(cursor.hasNext()){
 			data.add(cursor.next());
 		}

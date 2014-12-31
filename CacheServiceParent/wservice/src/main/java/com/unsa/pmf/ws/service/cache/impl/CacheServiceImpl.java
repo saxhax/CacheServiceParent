@@ -14,6 +14,7 @@ import com.unsa.pmf.ws.common.rmi.RemoteServer;
 import com.unsa.pmf.ws.common.session.Session;
 import com.unsa.pmf.ws.common.config.Configurations;
 import com.unsa.pmf.ws.common.data.Data;
+import com.unsa.pmf.ws.common.data.Set;
 import com.unsa.pmf.ws.common.filter.Filter;
 
 @WebService(endpointInterface="com.unsa.pmf.ws.service.cache.CacheService")
@@ -40,7 +41,7 @@ public class CacheServiceImpl implements CacheService{
 	}
 
 	@WebMethod
-	public Session putValues(Session session, List<String> values) throws Exception {
+	public Session putValues(Session session, List<Set> values) throws Exception {
 		if (!Validate.validateSession(session)){
 			return new Session();
 		}

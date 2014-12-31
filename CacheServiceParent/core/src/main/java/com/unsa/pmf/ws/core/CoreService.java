@@ -1,6 +1,5 @@
 package com.unsa.pmf.ws.core;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -12,6 +11,7 @@ import com.unsa.pmf.ws.common.exception.CacheNotExistException;
 import com.unsa.pmf.ws.common.exception.SessionNotValidException;
 import com.unsa.pmf.ws.common.filter.Filter;
 import com.unsa.pmf.ws.common.data.Data;
+import com.unsa.pmf.ws.common.data.Set;
 import com.unsa.pmf.ws.common.session.SessionFactory;
 import com.unsa.pmf.ws.dal.Dal;
 
@@ -67,7 +67,7 @@ public class CoreService {
 	 * @return
 	 * @throws Exception 
 	 */
-	public Session putValues(Session session, List<String> values) throws Exception {
+	public Session putValues(Session session, List<Set> values) throws Exception {
 		if (activeSessions.containsKey(session.getSessionName())) {
 			String id = activeSessions.get(session.getSessionName()).getSessionId();
 			if (id.equalsIgnoreCase(session.getSessionId())) {
@@ -116,20 +116,5 @@ public class CoreService {
 			activeSessions.remove(session.getSessionName());
 			activeSessions.put(session.getSessionName(), session);
 		}
-	}
-	
-	public static void main(String[] args) throws Exception {
-		CoreService service = new CoreService();
-		Configurations configurations = new Configurations();
-		configurations.setName("testNameNew2");
-		Session session = service.createCacheService(configurations);
-		List<String> values = new ArrayList<String>();
-		values.add("one");
-		values.add("two");
-		values.add("three");
-		service.putValues(session, values);
-		Filter filter = new Filter();
-		Data data = service.getValues(session, filter);
-		System.out.println(data.getSpecificValues());
 	}
 }
