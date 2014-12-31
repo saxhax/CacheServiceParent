@@ -98,7 +98,10 @@ public class Filter {
         }
         return this.specificData;
     }
+    
+    
     public void setSpecificData(List<String> a) {
     	specificData = a;
     }
+
 }

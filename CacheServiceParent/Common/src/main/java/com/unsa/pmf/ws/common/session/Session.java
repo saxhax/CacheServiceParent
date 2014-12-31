@@ -8,9 +8,10 @@ import java.util.UUID;
  */
 public class Session implements Serializable{
 	
+	private static final long serialVersionUID = -83626479858110244L;
 	private String sessionId = UUID.randomUUID().toString();
 	private String sessionName;
-	private boolean sessionValid;
+	private Boolean sessionValid;
 
 	public String getSessionId() {
 		return sessionId;
@@ -35,9 +36,5 @@ public class Session implements Serializable{
     		sessionValid = true;
     	}
 		return sessionValid;
-	}
-
-	public void setSessionValid(boolean sessionValid) {
-		this.sessionValid = sessionValid;
 	}
 }

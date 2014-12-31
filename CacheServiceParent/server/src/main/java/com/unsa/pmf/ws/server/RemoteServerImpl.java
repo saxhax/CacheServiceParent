@@ -31,27 +31,27 @@ public final class RemoteServerImpl extends UnicastRemoteObject implements Remot
 		super();
 	}
 	
-	public Session createCacheService(Configurations configurations) throws RemoteException{
+	public Session createCacheService(Configurations configurations) throws Exception{
 		CoreService service = new CoreService();
 		return service.createCacheService(configurations);
 	}
 
-	public Session getCacheService(String name) throws RemoteException{
+	public Session getCacheService(String name) throws Exception{
 		CoreService service = new CoreService();
 		return service.getCacheService(name);
 	}
 
-	public Session putValues(Session session, List<String> values) throws RemoteException{
+	public Session putValues(Session session, List<String> values) throws Exception{
 		CoreService service = new CoreService();
 		return service.putValues(session, values);
 	}
 
-	public Data getValues(Session session, Filter filter) throws RemoteException{
+	public Data getValues(Session session, Filter filter) throws Exception{
 		CoreService service = new CoreService();
 		return service.getValues(session, filter);
 	}
 
-	public Boolean closeSession(Session session) throws RemoteException{
+	public Boolean closeSession(Session session) throws Exception{
 		try {
 			CoreService service = new CoreService();
 			service.closeSession(session);

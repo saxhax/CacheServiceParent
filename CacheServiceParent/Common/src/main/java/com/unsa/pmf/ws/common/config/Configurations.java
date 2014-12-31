@@ -4,15 +4,9 @@ import java.io.Serializable;
 
 public class Configurations implements Serializable{
 	
-	private int numberOfFields;
+	private static final long serialVersionUID = 4246133917987293684L;
 	private String name;
 	
-	public int getNumberOfFields() {
-		return numberOfFields;
-	}
-	public void setNumberOfFields(int numberOfFields) {
-		this.numberOfFields = numberOfFields;
-	}
 	public String getName() {
 		return name;
 	}

@@ -17,7 +17,6 @@ public class Client {
 			RemoteServer obj = (RemoteServer) Naming.lookup("rmi://localhost:5005/RemoteServerImpl");
 			Configurations configuration = new Configurations();
 			configuration.setName("simpleName");
-			configuration.setNumberOfFields(5);
 			
 			Session session = obj.createCacheService(configuration);
 			

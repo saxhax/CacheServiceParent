@@ -19,8 +19,4 @@ public class SessionFactory {
 		config.setName(session.getSessionName());
 		return config;
 	}
-
-	public static boolean isValidSession(Session session) {
-		return true;
-	}
 }

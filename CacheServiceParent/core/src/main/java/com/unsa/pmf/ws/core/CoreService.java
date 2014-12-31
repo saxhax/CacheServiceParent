@@ -1,30 +1,45 @@
 package com.unsa.pmf.ws.core;
 
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import com.unsa.pmf.ws.common.session.Session;
 import com.unsa.pmf.ws.common.config.Configurations;
+import com.unsa.pmf.ws.common.exception.CacheAlreadyExistException;
+import com.unsa.pmf.ws.common.exception.CacheNotExistException;
+import com.unsa.pmf.ws.common.exception.SessionNotValidException;
 import com.unsa.pmf.ws.common.filter.Filter;
 import com.unsa.pmf.ws.common.data.Data;
 import com.unsa.pmf.ws.common.session.SessionFactory;
 import com.unsa.pmf.ws.dal.Dal;
 
 public class CoreService {
-
+	private static Map<String, Session> activeSessions = null;
+	
+	public CoreService(){
+		if (activeSessions == null){
+			activeSessions = new Dal().getSessions();
+		}
+	}
 	/**
 	 * Create cache
 	 * @param configurations
 	 * @return
+	 * @throws CacheAlreadyExistException 
 	 */
-	public Session createCacheService(Configurations configurations){
+	public Session createCacheService(Configurations configurations) throws CacheAlreadyExistException{
+		if (activeSessions.containsKey(configurations.getName())) {
+			throw new CacheAlreadyExistException();
+		}
 		Session session = null;
 		try {
 			session = SessionFactory.getSession(configurations.getName());
 			Dal dal = new Dal();
 			dal.createCacheService(configurations.getName());
 			dal.storeSession(session);
+			activeSessions.put(session.getSessionName(), session);
 		} catch (Exception e) {
 			return null;
 		}
@@ -35,9 +50,14 @@ public class CoreService {
 	 * Get session for cache service 
 	 * @param name
 	 * @return
+	 * @throws CacheNotExistException 
 	 */
-	public Session getCacheService(String name){
-		return SessionFactory.getSession(name);
+	public Session getCacheService(String name) throws CacheNotExistException{
+		if (activeSessions.containsKey(name)) {
+			return activeSessions.get(name);
+		} else {
+			throw new CacheNotExistException();
+		}
 	}
 
 	/**
@@ -45,15 +65,21 @@ public class CoreService {
 	 * @param session
 	 * @param values
 	 * @return
+	 * @throws Exception 
 	 */
-	public Session putValues(Session session, List<String> values) {
-		try {
-			Dal dal = new Dal();
-			dal.put(values, session.getSessionName());
-		} catch (Exception e) {
-			return null;
+	public Session putValues(Session session, List<String> values) throws Exception {
+		if (activeSessions.containsKey(session.getSessionName())) {
+			String id = activeSessions.get(session.getSessionName()).getSessionId();
+			if (id.equalsIgnoreCase(session.getSessionId())) {
+				Dal dal = new Dal();
+				dal.put(values, session.getSessionName());
+				return session;
+			} else {
+				throw new SessionNotValidException();
+			}
+		} else {
+			throw new SessionNotValidException();
 		}
-		return session;
 	}
 
 	/**
@@ -61,13 +87,19 @@ public class CoreService {
 	 * @param session
 	 * @param filter
 	 * @return
+	 * @throws Exception 
 	 */
-	public Data getValues(Session session, Filter filter){
-		try {
-			Dal dal = new Dal();
-			return dal.get(filter, session.getSessionName());
-		} catch (Exception e) {
-			return null;
+	public Data getValues(Session session, Filter filter) throws Exception{
+		if (activeSessions.containsKey(session.getSessionName())) {
+			String id = activeSessions.get(session.getSessionName()).getSessionId();
+			if (id.equalsIgnoreCase(session.getSessionId())) {
+				Dal dal = new Dal();
+				return dal.get(filter, session.getSessionName());
+			} else {
+				throw new SessionNotValidException();
+			}
+		} else {
+			throw new SessionNotValidException();
 		}
 	}
 
@@ -75,15 +107,22 @@ public class CoreService {
 	 * Close session
 	 * @param session
 	 */
-	public void closeSession(Session session) {
-		Dal dal = new Dal();
-		dal.removeSession(session);
+	public void closeSession(Session session) throws Exception{
+		if (activeSessions.containsKey(session.getSessionName())) {
+			Dal dal = new Dal();
+			dal.removeSession(session);
+			session.setSessionId(UUID.randomUUID().toString());
+			dal.storeSession(session);
+			activeSessions.remove(session.getSessionName());
+			activeSessions.put(session.getSessionName(), session);
+		}
 	}
 	
-	public static void main(String[] args) throws UnknownHostException {
+	public static void main(String[] args) throws Exception {
 		CoreService service = new CoreService();
-		Session session = new Session();
-		session.setSessionName("testNameNew2");
+		Configurations configurations = new Configurations();
+		configurations.setName("testNameNew2");
+		Session session = service.createCacheService(configurations);
 		List<String> values = new ArrayList<String>();
 		values.add("one");
 		values.add("two");

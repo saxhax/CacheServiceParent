@@ -1,7 +1,5 @@
 package com.unsa.pmf.ws.dal.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.*;
 
 import java.sql.Timestamp;
@@ -15,7 +13,7 @@ import java.util.UUID;
 @Entity
 @Table(name="session")
 @NamedQuery(name="Session.findAll", query="SELECT s FROM Session s")
-public class Session implements Serializable {
+public class Session implements SQLEnitiy {
 	private static final long serialVersionUID = 1L;
 
 	@Id

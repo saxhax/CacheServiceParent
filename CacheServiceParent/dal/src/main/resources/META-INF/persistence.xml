@@ -5,6 +5,7 @@
 	<persistence-unit name="dal" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<class>com.unsa.pmf.ws.dal.entity.Session</class>
+		<class>com.unsa.pmf.ws.dal.entity.Data</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/cache" />

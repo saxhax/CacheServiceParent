@@ -18,7 +18,6 @@ public class Client {
 		
 		Configurations configuration = new Configurations();
 		configuration.setName("simpleName");
-		configuration.setNumberOfFields(5);
 		
 		Session session = service.getCacheServiceImplPort().createCacheService(configuration);
 		

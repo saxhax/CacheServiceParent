@@ -2,24 +2,26 @@ package com.unsa.pmf.ws.common.data;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Row implements Serializable{
 	private static final long serialVersionUID = -9097096452832154266L;
-	private ArrayList<String> rowValues;
+
+	private List<String> rowValues;
 	
 	public Row(){
 		rowValues = new ArrayList<String>();
 	}
-	
-	public Row(ArrayList<String> rowValues){
-		this.rowValues = rowValues;
-	}
 
-	public ArrayList<String> getRowValues() {
+	public List<String> getRowValues() {
 		return rowValues;
 	}
 
-	public void setRowValues(ArrayList<String> rowValues) {
+	public void setRowValues(List<String> rowValues) {
 		this.rowValues = rowValues;
+	}
+
+	public String toString() {
+		return rowValues != null ? rowValues.toString() : "null";
 	}
 }

@@ -2,8 +2,8 @@ package com.unsa.pmf.ws.dal;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.unsa.pmf.ws.common.data.Data;
 import com.unsa.pmf.ws.common.data.Row;
@@ -18,11 +18,19 @@ public class Dal {
 	private Client client = new Client();
 	
 	/**
+	 * Sessions
+	 * @return
+	 */
+	public Map<String, Session> getSessions(){
+		return client.getAllSessions();
+	}
+	
+	/**
 	 * Store session
 	 * @param session
 	 */
 	public void storeSession(Session session){
-		client.storeSession(Mapper.getSession(session));
+		client.store(Mapper.getSession(session));
 	}
 	
 	/**
@@ -30,7 +38,7 @@ public class Dal {
 	 * @param session
 	 */
 	public void removeSession(Session session){
-		client.removeSession(Mapper.getSession(session));
+		client.remove(Mapper.getSession(session));
 	}
 	
 	/**
@@ -65,7 +73,9 @@ public class Dal {
 		List<List<String>> listData = bc.get(filter.getSpecificData(), collectionName);
 		Data data = new Data();
 		for (List<String> list : listData) {
-			data.getSpecificValues().add(new Row((ArrayList) list));
+			Row row = new Row();
+			row.setRowValues(list);
+			data.getSpecificValues().add(row);
 		}
 		return data;
 	}

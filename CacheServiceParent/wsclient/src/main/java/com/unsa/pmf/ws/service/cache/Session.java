@@ -18,7 +18,6 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="sessionId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="sessionName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="sessionValid" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,14 +29,12 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "session", propOrder = {
     "sessionId",
-    "sessionName",
-    "sessionValid"
+    "sessionName"
 })
 public class Session {
 
     protected String sessionId;
     protected String sessionName;
-    protected boolean sessionValid;
 
     /**
      * Gets the value of the sessionId property.
@@ -85,22 +82,6 @@ public class Session {
      */
     public void setSessionName(String value) {
         this.sessionName = value;
-    }
-
-    /**
-     * Gets the value of the sessionValid property.
-     * 
-     */
-    public boolean isSessionValid() {
-        return sessionValid;
-    }
-
-    /**
-     * Sets the value of the sessionValid property.
-     * 
-     */
-    public void setSessionValid(boolean value) {
-        this.sessionValid = value;
     }
 
 }
