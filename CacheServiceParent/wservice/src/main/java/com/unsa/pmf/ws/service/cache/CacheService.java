@@ -16,18 +16,19 @@ import com.unsa.pmf.ws.common.filter.Filter;
 public interface CacheService{
 
 	/**
-	 * Check is service started
-	 * @param serviceName
+	 * Create cache service with name from configuration
+	 * @param configurations
 	 * @return
+	 * @throws Exception
 	 */
 	@WebMethod
 	public Session createCacheService(@WebParam(name = "configuration") Configurations configurations) throws Exception;
 
-	/**
-	 * Start new service
-	 * @param serviceName
+	 /**
+	 * Get session for cache service
+	 * @param name
 	 * @return
-	 * 		Service session
+	 * @throws Exception
 	 */
 	@WebMethod
 	public Session getCacheServiceSession(@WebParam(name = "name") String name) throws Exception;
