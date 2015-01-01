@@ -3,12 +3,13 @@ package com.unsa.pmf.ws.service.cache;
 import java.util.List;
 
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.jws.WebService;
 
 import com.unsa.pmf.ws.common.session.Session;
 import com.unsa.pmf.ws.common.config.Configurations;
 import com.unsa.pmf.ws.common.data.Data;
-import com.unsa.pmf.ws.common.data.Set;
+import com.unsa.pmf.ws.common.data.Field;
 import com.unsa.pmf.ws.common.filter.Filter;
 
 @WebService
@@ -20,7 +21,7 @@ public interface CacheService{
 	 * @return
 	 */
 	@WebMethod
-	public Session createCacheService(Configurations configurations) throws Exception;
+	public Session createCacheService(@WebParam(name = "configuration") Configurations configurations) throws Exception;
 
 	/**
 	 * Start new service
@@ -29,7 +30,7 @@ public interface CacheService{
 	 * 		Service session
 	 */
 	@WebMethod
-	public Session getCacheServiceSession(String name) throws Exception;
+	public Session getCacheServiceSession(@WebParam(name = "name") String name) throws Exception;
 
 	/**
 	 * Put new values to cache
@@ -38,7 +39,7 @@ public interface CacheService{
 	 * @return
 	 */
 	@WebMethod
-	public Session putValues(Session session, List<Set> values) throws Exception;
+	public Session putValues(@WebParam(name = "session") Session session,@WebParam(name = "data")  List<Field> values) throws Exception;
 	
 	/**
 	 * Get values with specific filter
@@ -47,12 +48,12 @@ public interface CacheService{
 	 * @return
 	 */
 	@WebMethod
-	public Data getValues(Session session, Filter filter) throws Exception;
+	public Data getValues(@WebParam(name = "session") Session session,@WebParam(name = "filter")  Filter filter) throws Exception;
 	
 	/**
 	 * Close session
 	 * @param session
 	 */
 	@WebMethod
-	public void closeSession(Session session) throws Exception;
+	public void closeSession(@WebParam(name = "session") Session session) throws Exception;
 }

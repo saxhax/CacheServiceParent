@@ -19,8 +19,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="conditions" type="{http://cache.service.ws.pmf.unsa.com/}condition" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="specificData" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="condition" type="{http://cache.service.ws.pmf.unsa.com/}condition" minOccurs="0"/>
+ *         &lt;element name="findFields" type="{http://cache.service.ws.pmf.unsa.com/}field" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -31,77 +31,66 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "filter", propOrder = {
-    "conditions",
-    "specificData"
+    "condition",
+    "findFields"
 })
 public class Filter {
 
+    protected Condition condition;
     @XmlElement(nillable = true)
-    protected List<Condition> conditions;
-    @XmlElement(nillable = true)
-    protected List<String> specificData;
+    protected List<Field> findFields;
 
     /**
-     * Gets the value of the conditions property.
+     * Gets the value of the condition property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Condition }
+     *     
+     */
+    public Condition getCondition() {
+        return condition;
+    }
+
+    /**
+     * Sets the value of the condition property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Condition }
+     *     
+     */
+    public void setCondition(Condition value) {
+        this.condition = value;
+    }
+
+    /**
+     * Gets the value of the findFields property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the conditions property.
+     * This is why there is not a <CODE>set</CODE> method for the findFields property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getConditions().add(newItem);
+     *    getFindFields().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Condition }
+     * {@link Field }
      * 
      * 
      */
-    public List<Condition> getConditions() {
-        if (conditions == null) {
-            conditions = new ArrayList<Condition>();
+    public List<Field> getFindFields() {
+        if (findFields == null) {
+            findFields = new ArrayList<Field>();
         }
-        return this.conditions;
-    }
-
-    /**
-     * Gets the value of the specificData property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the specificData property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getSpecificData().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link String }
-     * 
-     * 
-     */
-    public List<String> getSpecificData() {
-        if (specificData == null) {
-            specificData = new ArrayList<String>();
-        }
-        return this.specificData;
-    }
-    
-    
-    public void setSpecificData(List<String> a) {
-    	specificData = a;
+        return this.findFields;
     }
 
 }

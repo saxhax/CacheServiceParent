@@ -11,7 +11,7 @@ import com.unsa.pmf.ws.common.exception.CacheNotExistException;
 import com.unsa.pmf.ws.common.exception.SessionNotValidException;
 import com.unsa.pmf.ws.common.filter.Filter;
 import com.unsa.pmf.ws.common.data.Data;
-import com.unsa.pmf.ws.common.data.Set;
+import com.unsa.pmf.ws.common.data.Field;
 import com.unsa.pmf.ws.common.session.SessionFactory;
 import com.unsa.pmf.ws.dal.Dal;
 
@@ -67,7 +67,7 @@ public class CoreService {
 	 * @return
 	 * @throws Exception 
 	 */
-	public Session putValues(Session session, List<Set> values) throws Exception {
+	public Session putValues(Session session, List<Field> values) throws Exception {
 		if (activeSessions.containsKey(session.getSessionName())) {
 			String id = activeSessions.get(session.getSessionName()).getSessionId();
 			if (id.equalsIgnoreCase(session.getSessionId())) {

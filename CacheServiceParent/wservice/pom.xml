@@ -11,15 +11,21 @@
 	<artifactId>wservice</artifactId>
 	<packaging>war</packaging>
 	<name>Web Service</name>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>com.unsa.pmf.ws</groupId>
 			<artifactId>common</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>3.0-alpha-1</version>
+		</dependency>
+
 	</dependencies>
-	
+
 	<build>
 		<finalName>wservice</finalName>
 	</build>

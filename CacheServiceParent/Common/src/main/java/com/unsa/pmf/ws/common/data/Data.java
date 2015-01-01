@@ -7,17 +7,17 @@ import java.util.List;
 public class Data implements Serializable{
 	private static final long serialVersionUID = 2990802288841200353L;
 	
-	private List<Row> specificValues;
+	private List<Row> foundRows;
 	
 	public Data() {
-		this.specificValues = new ArrayList<Row>();
-	}
-	
-	public List<Row> getSpecificValues() {
-		return specificValues;
+		this.foundRows = new ArrayList<Row>();
 	}
 
-	public void setSpecificValues(List<Row> specificValues) {
-		this.specificValues = specificValues;
+	public List<Row> getFoundRows() {
+		return foundRows;
+	}
+
+	public void setFoundRows(List<Row> foundRows) {
+		this.foundRows = foundRows;
 	}
 }

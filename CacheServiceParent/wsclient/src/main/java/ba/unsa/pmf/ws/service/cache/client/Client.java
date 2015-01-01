@@ -8,35 +8,38 @@ import com.unsa.pmf.ws.service.cache.Configurations;
 import com.unsa.pmf.ws.service.cache.Filter;
 import com.unsa.pmf.ws.service.cache.Row;
 import com.unsa.pmf.ws.service.cache.Session;
+import com.unsa.pmf.ws.service.cache.Field;
 import com.unsa.pmf.ws.service.cache.impl.CacheServiceImplService;
 import com.unsa.pmf.ws.service.cache.impl.Exception;
 
-public class Client {
+public class Client extends Filter{
 
 	public static void main(String[] args) throws Exception {
 		CacheServiceImplService service = new CacheServiceImplService();
 		
-		Configurations configuration = new Configurations();
-		configuration.setName("simpleName");
+		Session session = service.getCacheServiceImplPort().getCacheServiceSession("soap");
 		
-		Session session = service.getCacheServiceImplPort().createCacheService(configuration);
-		
-		for (int i = 0; i < 70; i++){
-			List<String> values = new ArrayList<String>();
-			values.add("first" + i);
-			values.add("second" + i);
+		for (int i = 0; i < 7000; i++){
+			ArrayList<Field> values = new ArrayList<Field>(); 
+			Field set = new Field();
+			set.setKey("key");
+			set.setValue("value" + i);
+			values.add(set);
 			service.getCacheServiceImplPort().putValues(session, values);
 		}
-		ArrayList<String> values = new ArrayList<String>();
-		values.add("first5");
-		Filter filter = new Filter();
-		filter.setSpecificData(values);
+		ArrayList<Field> values = new ArrayList<Field>(); 
+		Field set = new Field();
+		set.setKey("key");
+		set.setValue("value55");
+		values.add(set);
+		Client filter = new Client();
+		filter.findFields = values;
 		Date date = new Date();
 		System.out.println(date);
-		List<Row> list = service.getCacheServiceImplPort().getValues(session, filter).getSpecificValues(); 
+		List<Row> list = service.getCacheServiceImplPort().getValues(session, filter).getFoundRows(); 
 		for (Row row : list) {
-			for (String string : row.getRowValues()){
-				System.out.print(string + ", ");
+			for (Field setOfData : row.getFields()){
+				System.out.print(setOfData.getKey() + ", " + setOfData.getValue());
 			}
 			System.out.println();
 		}

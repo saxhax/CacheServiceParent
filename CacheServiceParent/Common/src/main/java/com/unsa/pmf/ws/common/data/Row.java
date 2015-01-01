@@ -7,21 +7,21 @@ import java.util.List;
 public class Row implements Serializable{
 	private static final long serialVersionUID = -9097096452832154266L;
 
-	private List<Set> rowValues;
+	private List<Field> fields;
 	
 	public Row(){
-		rowValues = new ArrayList<Set>();
+		fields = new ArrayList<Field>();
 	}
 
-	public List<Set> getRowValues() {
-		return rowValues;
+	public List<Field> getFields() {
+		return fields;
 	}
 
-	public void setRowValues(List<Set> rowValues) {
-		this.rowValues = rowValues;
+	public void setFields(List<Field> fields) {
+		this.fields = fields;
 	}
 
 	public String toString() {
-		return rowValues != null ? rowValues.toString() : "null";
+		return fields != null ? fields.toString() : "null";
 	}
 }

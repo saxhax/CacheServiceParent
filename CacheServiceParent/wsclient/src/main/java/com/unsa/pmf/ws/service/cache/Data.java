@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="specificValues" type="{http://cache.service.ws.pmf.unsa.com/}row" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="foundRows" type="{http://cache.service.ws.pmf.unsa.com/}row" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,26 +30,26 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "data", propOrder = {
-    "specificValues"
+    "foundRows"
 })
 public class Data {
 
     @XmlElement(nillable = true)
-    protected List<Row> specificValues;
+    protected List<Row> foundRows;
 
     /**
-     * Gets the value of the specificValues property.
+     * Gets the value of the foundRows property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the specificValues property.
+     * This is why there is not a <CODE>set</CODE> method for the foundRows property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getSpecificValues().add(newItem);
+     *    getFoundRows().add(newItem);
      * </pre>
      * 
      * 
@@ -59,11 +59,11 @@ public class Data {
      * 
      * 
      */
-    public List<Row> getSpecificValues() {
-        if (specificValues == null) {
-            specificValues = new ArrayList<Row>();
+    public List<Row> getFoundRows() {
+        if (foundRows == null) {
+            foundRows = new ArrayList<Row>();
         }
-        return this.specificValues;
+        return this.foundRows;
     }
 
 }

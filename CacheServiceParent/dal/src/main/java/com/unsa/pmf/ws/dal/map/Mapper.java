@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
-import com.unsa.pmf.ws.common.data.Set;
+import com.unsa.pmf.ws.common.data.Field;
 import com.unsa.pmf.ws.common.session.Session;
 
 public class Mapper {
@@ -39,12 +39,12 @@ public class Mapper {
 	 * @param data
 	 * @return
 	 */
-	public static BasicDBObject generateObject(List<Set> data){
+	public static BasicDBObject generateObject(List<Field> data){
 		List<BasicDBObject> objects = new ArrayList<BasicDBObject>();
 		if (data != null && !data.isEmpty()){
-			for(Set set : data){
+			for(Field field : data){
 				BasicDBObject object = new BasicDBObject(); 
-				object.put(set.getKey(), set.getValue());
+				object.put(field.getKey(), field.getValue());
 				objects.add(object);
 			}
 		}
@@ -59,14 +59,14 @@ public class Mapper {
 	 * @param data
 	 * @return
 	 */
-	public static List<Set> generateList(DBObject object){
-		List<Set> data = new ArrayList<Set>();
+	public static List<Field> generateList(DBObject object){
+		List<Field> data = new ArrayList<Field>();
 		for (String key : object.keySet()){
 			try {
-				Set set = new Set();
-				set.setKey(key);
-				set.setValue(object.get(key).toString());
-				data.add(set);
+				Field field = new Field();
+				field.setKey(key);
+				field.setValue(object.get(key).toString());
+				data.add(field);
 			} catch(Exception e){
 				
 			}

@@ -18,8 +18,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="arg0" type="{http://cache.service.ws.pmf.unsa.com/}session" minOccurs="0"/>
- *         &lt;element name="arg1" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="session" type="{http://cache.service.ws.pmf.unsa.com/}session" minOccurs="0"/>
+ *         &lt;element name="data" type="{http://cache.service.ws.pmf.unsa.com/}field" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,65 +30,65 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "putValues", propOrder = {
-    "arg0",
-    "arg1"
+    "session",
+    "data"
 })
 public class PutValues {
 
-    protected Session arg0;
-    protected List<String> arg1;
+    protected Session session;
+    protected List<Field> data;
 
     /**
-     * Gets the value of the arg0 property.
+     * Gets the value of the session property.
      * 
      * @return
      *     possible object is
      *     {@link Session }
      *     
      */
-    public Session getArg0() {
-        return arg0;
+    public Session getSession() {
+        return session;
     }
 
     /**
-     * Sets the value of the arg0 property.
+     * Sets the value of the session property.
      * 
      * @param value
      *     allowed object is
      *     {@link Session }
      *     
      */
-    public void setArg0(Session value) {
-        this.arg0 = value;
+    public void setSession(Session value) {
+        this.session = value;
     }
 
     /**
-     * Gets the value of the arg1 property.
+     * Gets the value of the data property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the arg1 property.
+     * This is why there is not a <CODE>set</CODE> method for the data property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getArg1().add(newItem);
+     *    getData().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link String }
+     * {@link Field }
      * 
      * 
      */
-    public List<String> getArg1() {
-        if (arg1 == null) {
-            arg1 = new ArrayList<String>();
+    public List<Field> getData() {
+        if (data == null) {
+            data = new ArrayList<Field>();
         }
-        return this.arg1;
+        return this.data;
     }
 
 }

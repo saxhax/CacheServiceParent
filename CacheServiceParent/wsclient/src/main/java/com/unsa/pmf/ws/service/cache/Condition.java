@@ -16,9 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="field" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="filterType" type="{http://cache.service.ws.pmf.unsa.com/}filterType" minOccurs="0"/>
- *         &lt;element name="value" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="limit" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,78 +27,34 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "condition", propOrder = {
-    "field",
-    "filterType",
-    "value"
+    "limit"
 })
 public class Condition {
 
-    protected int field;
-    protected String filterType;
-    protected String value;
+    protected Integer limit;
 
     /**
-     * Gets the value of the field property.
-     * 
-     */
-    public int getField() {
-        return field;
-    }
-
-    /**
-     * Sets the value of the field property.
-     * 
-     */
-    public void setField(int value) {
-        this.field = value;
-    }
-
-    /**
-     * Gets the value of the filterType property.
+     * Gets the value of the limit property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Integer }
      *     
      */
-    public String getFilterType() {
-        return filterType;
+    public Integer getLimit() {
+        return limit;
     }
 
     /**
-     * Sets the value of the filterType property.
+     * Sets the value of the limit property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Integer }
      *     
      */
-    public void setFilterType(String value) {
-        this.filterType = value;
-    }
-
-    /**
-     * Gets the value of the value property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getValue() {
-        return value;
-    }
-
-    /**
-     * Sets the value of the value property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setValue(String value) {
-        this.value = value;
+    public void setLimit(Integer value) {
+        this.limit = value;
     }
 
 }

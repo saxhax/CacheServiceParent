@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="arg0" type="{http://cache.service.ws.pmf.unsa.com/}configurations" minOccurs="0"/>
+ *         &lt;element name="configuration" type="{http://cache.service.ws.pmf.unsa.com/}configurations" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,34 +27,34 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "createCacheService", propOrder = {
-    "arg0"
+    "configuration"
 })
 public class CreateCacheService {
 
-    protected Configurations arg0;
+    protected Configurations configuration;
 
     /**
-     * Gets the value of the arg0 property.
+     * Gets the value of the configuration property.
      * 
      * @return
      *     possible object is
      *     {@link Configurations }
      *     
      */
-    public Configurations getArg0() {
-        return arg0;
+    public Configurations getConfiguration() {
+        return configuration;
     }
 
     /**
-     * Sets the value of the arg0 property.
+     * Sets the value of the configuration property.
      * 
      * @param value
      *     allowed object is
      *     {@link Configurations }
      *     
      */
-    public void setArg0(Configurations value) {
-        this.arg0 = value;
+    public void setConfiguration(Configurations value) {
+        this.configuration = value;
     }
 
 }

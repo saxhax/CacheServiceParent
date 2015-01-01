@@ -140,14 +140,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ArrayList }
-     * 
-     */
-    public ArrayList createArrayList() {
-        return new ArrayList();
-    }
-
-    /**
      * Create an instance of {@link Data }
      * 
      */
@@ -161,6 +153,14 @@ public class ObjectFactory {
      */
     public Row createRow() {
         return new Row();
+    }
+
+    /**
+     * Create an instance of {@link Field }
+     * 
+     */
+    public Field createField() {
+        return new Field();
     }
 
     /**

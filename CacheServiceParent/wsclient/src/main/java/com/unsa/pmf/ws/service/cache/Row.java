@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="rowValues" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="fields" type="{http://cache.service.ws.pmf.unsa.com/}field" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,40 +30,40 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "row", propOrder = {
-    "rowValues"
+    "fields"
 })
 public class Row {
 
     @XmlElement(nillable = true)
-    protected List<String> rowValues;
+    protected List<Field> fields;
 
     /**
-     * Gets the value of the rowValues property.
+     * Gets the value of the fields property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the rowValues property.
+     * This is why there is not a <CODE>set</CODE> method for the fields property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getRowValues().add(newItem);
+     *    getFields().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link String }
+     * {@link Field }
      * 
      * 
      */
-    public List<String> getRowValues() {
-        if (rowValues == null) {
-            rowValues = new ArrayList<String>();
+    public List<Field> getFields() {
+        if (fields == null) {
+            fields = new ArrayList<Field>();
         }
-        return this.rowValues;
+        return this.fields;
     }
 
 }

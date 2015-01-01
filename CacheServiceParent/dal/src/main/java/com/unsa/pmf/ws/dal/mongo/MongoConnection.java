@@ -10,11 +10,11 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
-import com.unsa.pmf.ws.common.data.Set;
+import com.unsa.pmf.ws.common.data.Field;
 import com.unsa.pmf.ws.common.filter.Condition;
 
 public class MongoConnection {
-	private static final String DEFAULT_DB = "mydb"; 
+	private static final String DEFAULT_DB = "cache"; 
 	private static MongoClient mongoClient;
 	
 	/**
@@ -22,10 +22,10 @@ public class MongoConnection {
 	 * @param data
 	 * @throws UnknownHostException 
 	 */
-	public void storeData(List<Set> data, String collectionName) throws UnknownHostException{
+	public void storeData(List<Field> data, String collectionName) throws UnknownHostException{
 		BasicDBObject object = new BasicDBObject();
-		for(Set set : data){
-			object.put(set.getKey(), set.getValue());
+		for(Field field : data){
+			object.put(field.getKey(), field.getValue());
 		}
 		store(object, collectionName);
 	}
@@ -58,7 +58,7 @@ public class MongoConnection {
 		List<DBObject> data = new ArrayList<DBObject>();
 		condition = condition == null ? new Condition() : condition;
 		DBCursor cursor;
-		if (condition.getLimit() == null) {
+		if (condition.getLimit() == null || condition.getLimit() < 0) {
 			cursor = getCollection(collectionName).find(object);
 		} else {
 			cursor = getCollection(collectionName).find(object).limit(condition.getLimit());
@@ -67,6 +67,15 @@ public class MongoConnection {
 			data.add(cursor.next());
 		}
 		return data;
+	}
+	
+	/** Delete Collection
+	 * @param name
+	 * @throws UnknownHostException
+	 */
+	public void dropCollection(String name) throws UnknownHostException{
+		DB db = getDB();
+		db.getCollection(name).drop();
 	}
 	
 	/**

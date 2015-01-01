@@ -7,7 +7,7 @@ import java.util.Map;
 
 import com.unsa.pmf.ws.common.data.Data;
 import com.unsa.pmf.ws.common.data.Row;
-import com.unsa.pmf.ws.common.data.Set;
+import com.unsa.pmf.ws.common.data.Field;
 import com.unsa.pmf.ws.common.filter.Filter;
 import com.unsa.pmf.ws.common.session.Session;
 import com.unsa.pmf.ws.dal.client.Client;
@@ -58,7 +58,7 @@ public class Dal {
 	 * @param values
 	 * @throws IOException 
 	 */
-	public void put(List<Set> values, String collectionName) throws Exception{
+	public void put(List<Field> values, String collectionName) throws Exception{
 		MongoBC bc = new MongoBC();
 		bc.store(values, collectionName);
 	}
@@ -71,12 +71,12 @@ public class Dal {
 	 */
 	public Data get(Filter filter, String collectionName) throws Exception{
 		MongoBC bc = new MongoBC();
-		List<List<Set>> listData = bc.get(filter, collectionName);
+		List<List<Field>> listData = bc.get(filter, collectionName);
 		Data data = new Data();
-		for (List<Set> list : listData) {
+		for (List<Field> list : listData) {
 			Row row = new Row();
-			row.setRowValues(list);
-			data.getSpecificValues().add(row);
+			row.setFields(list);
+			data.getFoundRows().add(row);
 		}
 		return data;
 	}

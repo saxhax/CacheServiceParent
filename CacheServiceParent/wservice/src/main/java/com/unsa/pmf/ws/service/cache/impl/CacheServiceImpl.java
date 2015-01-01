@@ -6,6 +6,7 @@ import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
+import javax.servlet.http.HttpServlet;
 
 import com.unsa.pmf.ws.service.Service;
 import com.unsa.pmf.ws.service.cache.CacheService;
@@ -14,11 +15,11 @@ import com.unsa.pmf.ws.common.rmi.RemoteServer;
 import com.unsa.pmf.ws.common.session.Session;
 import com.unsa.pmf.ws.common.config.Configurations;
 import com.unsa.pmf.ws.common.data.Data;
-import com.unsa.pmf.ws.common.data.Set;
+import com.unsa.pmf.ws.common.data.Field;
 import com.unsa.pmf.ws.common.filter.Filter;
 
 @WebService(endpointInterface="com.unsa.pmf.ws.service.cache.CacheService")
-public class CacheServiceImpl implements CacheService{
+public class CacheServiceImpl extends HttpServlet implements CacheService{
 
 	/**
 	 * Default constructor
@@ -26,7 +27,7 @@ public class CacheServiceImpl implements CacheService{
 	public CacheServiceImpl(){}
 
 	@WebMethod
-	public Session createCacheService(Configurations configurations) throws Exception{
+	public Session createCacheService(@WebParam(name = "configuration") Configurations configurations) throws Exception{
 		if (!Validate.validateConfiguration(configurations)){
 			return new Session();
 		}
@@ -35,13 +36,13 @@ public class CacheServiceImpl implements CacheService{
 	}
 
 	@WebMethod
-	public Session getCacheServiceSession(String name) throws Exception{
+	public Session getCacheServiceSession(@WebParam(name = "name") String name) throws Exception{
 		RemoteServer service = getRemoteServer();
 		return service.getCacheService(name);
 	}
 
 	@WebMethod
-	public Session putValues(Session session, List<Set> values) throws Exception {
+	public Session putValues(@WebParam(name = "session") Session session,@WebParam(name = "data")  List<Field> values) throws Exception {
 		if (!Validate.validateSession(session)){
 			return new Session();
 		}
@@ -50,7 +51,7 @@ public class CacheServiceImpl implements CacheService{
 	}
 
 	@WebMethod
-	public Data getValues(Session session, Filter filter) throws Exception{
+	public Data getValues(@WebParam(name = "session") Session session,@WebParam(name = "filter")  Filter filter) throws Exception{
 		if (!Validate.validateSession(session)){
 			return new Data();
 		}
@@ -59,7 +60,7 @@ public class CacheServiceImpl implements CacheService{
 	}
 
 	@WebMethod
-	public void closeSession(Session session) throws Exception{
+	public void closeSession(@WebParam(name = "session") Session session) throws Exception{
 		if (!Validate.validateSession(session)){
 			return;
 		}

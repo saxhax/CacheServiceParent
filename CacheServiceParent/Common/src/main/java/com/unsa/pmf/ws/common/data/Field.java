@@ -2,14 +2,14 @@ package com.unsa.pmf.ws.common.data;
 
 import java.io.Serializable;
 
-public class Set implements Serializable{
+public class Field implements Serializable{
 	
 	private static final long serialVersionUID = -369284050641102570L;
 	private String key;
 	private String value;
 
-	public Set(){}
-	public Set(String key, String value){
+	public Field(){}
+	public Field(String key, String value){
 		this.key = key;
 		this.value = value;
 	}

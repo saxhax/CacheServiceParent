@@ -11,6 +11,7 @@ import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
 import com.unsa.pmf.ws.service.cache.Configurations;
 import com.unsa.pmf.ws.service.cache.Data;
+import com.unsa.pmf.ws.service.cache.Field;
 import com.unsa.pmf.ws.service.cache.Filter;
 import com.unsa.pmf.ws.service.cache.ObjectFactory;
 import com.unsa.pmf.ws.service.cache.Session;
@@ -31,7 +32,7 @@ public interface CacheService {
 
     /**
      * 
-     * @param arg0
+     * @param name
      * @return
      *     returns com.unsa.pmf.ws.service.cache.Session
      * @throws Exception
@@ -41,29 +42,29 @@ public interface CacheService {
     @RequestWrapper(localName = "getCacheServiceSession", targetNamespace = "http://cache.service.ws.pmf.unsa.com/", className = "com.unsa.pmf.ws.service.cache.GetCacheServiceSession")
     @ResponseWrapper(localName = "getCacheServiceSessionResponse", targetNamespace = "http://cache.service.ws.pmf.unsa.com/", className = "com.unsa.pmf.ws.service.cache.GetCacheServiceSessionResponse")
     public Session getCacheServiceSession(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0)
+        @WebParam(name = "name", targetNamespace = "")
+        String name)
         throws Exception
     ;
 
     /**
      * 
-     * @param arg0
+     * @param session
      * @throws Exception
      */
     @WebMethod
     @RequestWrapper(localName = "closeSession", targetNamespace = "http://cache.service.ws.pmf.unsa.com/", className = "com.unsa.pmf.ws.service.cache.CloseSession")
     @ResponseWrapper(localName = "closeSessionResponse", targetNamespace = "http://cache.service.ws.pmf.unsa.com/", className = "com.unsa.pmf.ws.service.cache.CloseSessionResponse")
     public void closeSession(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Session arg0)
+        @WebParam(name = "session", targetNamespace = "")
+        Session session)
         throws Exception
     ;
 
     /**
      * 
-     * @param arg1
-     * @param arg0
+     * @param session
+     * @param filter
      * @return
      *     returns com.unsa.pmf.ws.service.cache.Data
      * @throws Exception
@@ -73,17 +74,17 @@ public interface CacheService {
     @RequestWrapper(localName = "getValues", targetNamespace = "http://cache.service.ws.pmf.unsa.com/", className = "com.unsa.pmf.ws.service.cache.GetValues")
     @ResponseWrapper(localName = "getValuesResponse", targetNamespace = "http://cache.service.ws.pmf.unsa.com/", className = "com.unsa.pmf.ws.service.cache.GetValuesResponse")
     public Data getValues(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Session arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        Filter arg1)
+        @WebParam(name = "session", targetNamespace = "")
+        Session session,
+        @WebParam(name = "filter", targetNamespace = "")
+        Filter filter)
         throws Exception
     ;
 
     /**
      * 
-     * @param arg1
-     * @param arg0
+     * @param session
+     * @param data
      * @return
      *     returns com.unsa.pmf.ws.service.cache.Session
      * @throws Exception
@@ -93,16 +94,16 @@ public interface CacheService {
     @RequestWrapper(localName = "putValues", targetNamespace = "http://cache.service.ws.pmf.unsa.com/", className = "com.unsa.pmf.ws.service.cache.PutValues")
     @ResponseWrapper(localName = "putValuesResponse", targetNamespace = "http://cache.service.ws.pmf.unsa.com/", className = "com.unsa.pmf.ws.service.cache.PutValuesResponse")
     public Session putValues(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Session arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        List<String> arg1)
+        @WebParam(name = "session", targetNamespace = "")
+        Session session,
+        @WebParam(name = "data", targetNamespace = "")
+        List<Field> data)
         throws Exception
     ;
 
     /**
      * 
-     * @param arg0
+     * @param configuration
      * @return
      *     returns com.unsa.pmf.ws.service.cache.Session
      * @throws Exception
@@ -112,8 +113,8 @@ public interface CacheService {
     @RequestWrapper(localName = "createCacheService", targetNamespace = "http://cache.service.ws.pmf.unsa.com/", className = "com.unsa.pmf.ws.service.cache.CreateCacheService")
     @ResponseWrapper(localName = "createCacheServiceResponse", targetNamespace = "http://cache.service.ws.pmf.unsa.com/", className = "com.unsa.pmf.ws.service.cache.CreateCacheServiceResponse")
     public Session createCacheService(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Configurations arg0)
+        @WebParam(name = "configuration", targetNamespace = "")
+        Configurations configuration)
         throws Exception
     ;
 
