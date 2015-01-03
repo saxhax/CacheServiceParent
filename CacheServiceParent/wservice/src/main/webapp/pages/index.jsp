@@ -1,15 +1,14 @@
-<%--@ page import = "com.unsa.pmf.ws.service.cache.impl.CacheServiceImpl" --%>
 <html>
 	<%
-		boolean error = false;
     	boolean contain = false;
+		boolean error = false;
 		String action = "";
 		try {
 		    action = request.getParameter("action");
 		    if (action == null || action.isEmpty()) {
 		    	error = true;
 		    } else {
-			    String actions[] = {"createService", "getSession"};
+			    String actions[] = {"createService", "getSession", "putValues"};
 			    for (String validAction : actions) {
 			    	if (validAction.equalsIgnoreCase(action)) {
 			    		contain = true;

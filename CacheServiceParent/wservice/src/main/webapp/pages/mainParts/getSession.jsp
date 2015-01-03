@@ -19,28 +19,31 @@
 			errorMessage = e.getMessage();
 		}
 	%>
-	
-	<fieldset>
-		<legend>Get service session</legend>
-		<form action="index.jsp?action=getSession" method="post">
-			<h2>Get cache service, name is enough for service</h2>
+	<h2>Get cache service, name is enough for service</h2>
+	<form action="index.jsp?action=getSession" method="post">
+		<fieldset class="field">
+			<legend>Get service session</legend>
 			<div class="row">
-				<label>Name: </label> 
+				<label>Service name: </label> 
 				<input type="text" name="name"></input>
 			</div>
 			<div class="row">
-				<input type="submit" value="Get session" id="submit" class="shadow border"></input>
+				<label>Description: </label>
+				<input type="text" name="description"></input>
 			</div>
-		</form>
-	</fieldset>
+		</fieldset>
+		<div class="row">
+			<input type="submit" value="Get session" id="submit" class="shadow border"></input>
+		</div>
+	</form>
 	<br>
 	<%
 		if (sessionFromServer != null) {%>
 			<div ng-app="" ng-init="sessionId='<%= sessionFromServer.getSessionId() %>'; sessionName='<%= sessionFromServer.getSessionName() %>'" >
-				<fieldset class="session">
+				<fieldset class="field">
 					<legend>Session from server</legend>
 					<div class="row">
-						<label>Session ID: </label> 
+						<label>Session Id: </label> 
 						<input type="text" name="sessionId" ng-model="sessionId" readonly></input>
 					</div>
 					<div class="row">
@@ -52,8 +55,8 @@
 	<%
 		}
 		if (errorMessage != null) {%>
-			<fieldset class="session">
-				<legend>Session:</legend>
+			<fieldset class="field">
+				<legend>Message:</legend>
 				<div class="row">
 					<label><%= errorMessage %></label> 
 				</div>

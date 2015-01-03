@@ -4,7 +4,11 @@
 		if (action.equalsIgnoreCase("createService")) {%>
 			<jsp:include page="createService.jsp" /><%
 		} else if (action.equalsIgnoreCase("getSession")) {%>
-		<jsp:include page="getSession.jsp" /><%
-	}
+			<jsp:include page="getSession.jsp" /><%
+		} else if (action.equalsIgnoreCase("putValues")) {%>
+			<jsp:include page="putValues.jsp" /><%
+		} else {%>
+			<jsp:include page="error.jsp" /><%
+		}
 	%>
 </div>

@@ -3,9 +3,9 @@
 <%@page import="com.unsa.pmf.ws.common.session.Session"%>
 <div>
 	<%
-	    Session sessionFromServer = null;
 		String errorMessage = null;
 		boolean parameter = false;
+	    Session sessionFromServer = null;
 		try {
 		    String sessionName = request.getParameter("name");
 		    parameter = (sessionName == null || sessionName.isEmpty());
@@ -22,27 +22,31 @@
 		}
 	%>
 	
-	<fieldset>
-		<legend>Create service</legend>
-		<form action="index.jsp?action=createService" method="post">
-			<h2>Cache service, name is enough for new service</h2>
+	<h2>Cache service, name is enough for new service</h2>
+	<form action="index.jsp?action=createService" method="post">
+		<fieldset  class="field">
+			<legend>Create service</legend>
 			<div class="row">
-				<label>Name: </label> 
+				<label>Service name: </label> 
 				<input type="text" name="name"></input>
 			</div>
 			<div class="row">
-				<input type="submit" value="Create service" id="submit" class="shadow border"></input>
+				<label>Description: </label> 
+				<input type="text" name="description"></input>
 			</div>
-		</form>
-	</fieldset>
+		</fieldset>
+		<div class="row">
+			<input type="submit" value="Create service" id="submit" class="shadow border"></input>
+		</div>
+	</form>
 	<br>
 	<%
 		if (sessionFromServer != null) {%>
 			<div ng-app="" ng-init="sessionId='<%= sessionFromServer.getSessionId() %>'; sessionName='<%= sessionFromServer.getSessionName() %>'" >
-				<fieldset class="session">
+				<fieldset class="field">
 					<legend>Session from server</legend>
 					<div class="row">
-						<label>Session ID: </label> 
+						<label>Session Id: </label> 
 						<input type="text" name="sessionId" ng-model="sessionId" readonly></input>
 					</div>
 					<div class="row">
@@ -51,11 +55,11 @@
 					</div>
 				</fieldset>
 			</div>
-	<%
+		<%
 		}
 		if (errorMessage != null) {%>
-			<fieldset class="session">
-				<legend>Session:</legend>
+			<fieldset class="field">
+				<legend>Message:</legend>
 				<div class="row">
 					<label><%= errorMessage %></label> 
 				</div>
