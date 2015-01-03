@@ -9,25 +9,32 @@
 	    Session sessionFromServer = null;
 		String message = null;
 		boolean parameter = false;
+		int numberOfFields = 0;
 		try {
 		    String sessionName = request.getParameter("sessionName");
 		    String sessionId = request.getParameter("sessionId");
-		    String key = request.getParameter("key");
-		    String value = request.getParameter("value");
+		    numberOfFields = Integer.parseInt(request.getParameter("count"));
+		    if (numberOfFields == 0) {
+		    	throw new Exception("Number of fields missing");
+		    }
+		   
 		    parameter = (sessionName == null || sessionName.isEmpty());
 		    parameter = (parameter || sessionId == null || sessionId.isEmpty());
 		    if (parameter) {
-		    	message = "Please, put session, key and value";
+		    	message = "Please, put session, keys and values";
 		    } else {
 				CacheServiceImpl service = new CacheServiceImpl();
 				sessionFromServer = new Session();
 				sessionFromServer.setSessionId(sessionId);
 				sessionFromServer.setSessionName(sessionName);
-				Field field = new Field();
-				field.setKey(key);
-				field.setValue(value);
+				
 				List<Field> fields = new ArrayList<Field>();
-				fields.add(field);
+				for (int i = 0; i < numberOfFields; i++) {
+				  	Field field = new Field();
+					field.setKey(request.getParameter("key" + i));
+					field.setValue(request.getParameter("value" + i));
+					fields.add(field);
+				}
 				sessionFromServer = service.putValues(sessionFromServer, fields);
 			    message = "Data added successfully.";
 		    }
@@ -35,9 +42,10 @@
 			message = e.getMessage();
 		}
 	%>
-		<form action="index.jsp?action=putValues" method="post">
+		<form action="index.jsp?action=putValues&count=<%=numberOfFields %>" method="post">
 			<div ng-app="" ng-init="sessionId=''; sessionName=''" >
-				<fieldset class="field">
+				<h2>Put session and values</h2>
+				<fieldset class="field shadow">
 					<legend> Session from server</legend>
 					<div class="row">
 						<label>Session ID: </label> 
@@ -48,17 +56,23 @@
 						<input type="text" name="sessionName" ng-model="sessionName"></input>
 					</div>
 				</fieldset>
-				<fieldset class="field">
-					<legend> Values for cache</legend>
-					<div class="row">
-						<label>Key: </label> 
-						<input type="text" name="key" ng-model="key"></input>
-					</div>
-					<div class="row">
-						<label>Value: </label> 
-						<input type="text" name="value" ng-model="value"></input>
-					</div>
-				</fieldset>
+				<% 
+				for (int i = 0; i < numberOfFields; i++) {
+				%>
+					<fieldset class="field shadow">
+						<legend> Values for cache number: <%=(i+1) %></legend>
+						<div class="row">
+							<label>Key: </label> 
+							<input type="text" name="key<%=i %>"></input>
+						</div>
+						<div class="row">
+							<label>Value: </label> 
+							<input type="text" name="value<%=i %>"></input>
+						</div>
+					</fieldset>
+				<% 
+				}
+				%>
 			</div>
 			<div class="row">
 				<input type="submit" value="Put values" id="submit" class="shadow border"></input>
@@ -67,7 +81,7 @@
 	<br>	
 	<%
 		if (message != null) {%>
-			<fieldset class="field">
+			<fieldset class="field shadow">
 				<legend>Message:</legend>
 				<div class="row">
 					<label><%= message %></label> 

@@ -1,5 +1,5 @@
-<div id="footer" class="shadow border radius bg minWidth">
-<p>Hadziabdic Akif | 
+<div id="footer" class="bg">
+	Hadziabdic Akif | 
 	<a href="mailto:akedxs@gmail.com?Subject=Cache%20setvice%20question">Question over mail</a> 
-	| Project for university | Napredne programske tehnike</p>
+	| Project for university | Napredne programske tehnike
 </div>

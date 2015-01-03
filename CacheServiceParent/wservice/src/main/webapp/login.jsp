@@ -6,7 +6,7 @@
 	</head>
 	<body class="background">
 		<div ng-app="" ng-init="username='admin'" id="login" >
-			<form action="pages/index.jsp?action=createService" method="post" class="shadow border radius">
+			<form action="pages/index.jsp?action=createService" method="post" class="shadow border bg radius">
 				<h2>Welcome to cache service</h2>
 				<div class="row">
 					<label>Username: </label>

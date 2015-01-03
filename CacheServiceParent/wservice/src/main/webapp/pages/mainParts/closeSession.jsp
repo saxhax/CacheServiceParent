@@ -26,7 +26,8 @@
 	%>
 		<form action="index.jsp?action=closeSession" method="post">
 			<div ng-app="" ng-init="sessionId=''; sessionName=''" >
-				<fieldset class="field">
+				<h2>Close session</h2>
+				<fieldset class="field shadow">
 					<legend>Close session</legend>
 					<div class="row">
 						<label>Session ID: </label> 
@@ -45,7 +46,7 @@
 	<br>	
 	<%
 		if (message != null) {%>
-			<fieldset class="field">
+			<fieldset class="field shadow">
 				<legend>Message:</legend>
 				<div class="row">
 					<label><%= message %></label> 

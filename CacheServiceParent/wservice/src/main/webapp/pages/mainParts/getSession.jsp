@@ -21,7 +21,7 @@
 	%>
 	<h2>Get cache service, name is enough for service</h2>
 	<form action="index.jsp?action=getSession" method="post">
-		<fieldset class="field">
+		<fieldset class="field shadow">
 			<legend>Get service session</legend>
 			<div class="row">
 				<label>Service name: </label> 
@@ -40,7 +40,7 @@
 	<%
 		if (sessionFromServer != null) {%>
 			<div ng-app="" ng-init="sessionId='<%= sessionFromServer.getSessionId() %>'; sessionName='<%= sessionFromServer.getSessionName() %>'" >
-				<fieldset class="field">
+				<fieldset class="field shadow">
 					<legend>Session from server</legend>
 					<div class="row">
 						<label>Session Id: </label> 
@@ -55,7 +55,7 @@
 	<%
 		}
 		if (errorMessage != null) {%>
-			<fieldset class="field">
+			<fieldset class="field shadow">
 				<legend>Message:</legend>
 				<div class="row">
 					<label><%= errorMessage %></label> 

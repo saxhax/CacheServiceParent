@@ -25,12 +25,26 @@
     box-shadow: 7px 7px 5px #456;
 }
 
+.blackShadow {
+	box-shadow: 7px 7px 5px #000;
+}
+
 .radius {
     border-radius: 8px;
 }
 
 .border {
 	border: 1px solid #555;
+}
+
+.getValues {
+	padding-bottom: 10px;
+	margin-bottom: 15px;
+}
+
+.half {
+	width: 42% !important;
+	float: left;
 }
 
 #login form {
@@ -42,7 +56,6 @@
 	height: 23%;
 	min-height: 180px;
 	min-width: 300px;
-    background-color: #888;
 }
 
 #login form h2 {
@@ -125,13 +138,19 @@
 	color: black;
 }
 
-#footer {
-	position: relative;
-    margin-left: auto;
-    margin-right: auto;
-	margin-bottom: 20px;
-	width: 80%;
-	min-height: 30px;
+#menu #turnOff {
+	position: absolute;
+	z-index: 10;
+	background: darkgreen;
+	height: 40px;
+	width: 20px;
+	float: right;
+	color: white;
+}
+
+#menu #turnOff:hover {
+	background: red;
+	color: black;
 }
 
 #createService {
@@ -155,6 +174,8 @@
     margin-left: auto;
     margin-right: auto;
 	margin-top: 20px;
+	bottom: 50px;
+	top: 0px;
 	width: 80%;
 	min-height: 360px;
 }
@@ -184,10 +205,9 @@
 	position: relative;
     margin-left: auto;
     margin-right: auto;
-	width: 27%;
-	height: 360px;
+	width: 25%;
+	min-height: 360px;
 	float: right;
-	overflow: hidden;
 }
 
 #mainRight ul {
@@ -196,22 +216,72 @@
 
 #mainRight ul li {
 	padding: 10px;
-	height: 32px;
+	width: 100%;
 	text-align: center;
-	color: white;
+	color: black;
+	font-weight: 700;
+	margin-bottom: 15px;
+	margin-left: -20px;
+}
+
+#count {
+	padding: 5px;
+	visibility: hidden;
+	position: absolute;
+	top: 115px;
+	left: 215px;
+	background: #ccc;
 }
 
 #mainRight ul li:hover{
-  background: -webkit-linear-gradient(left top, #fff , #555); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(bottom right, #fff , #555); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(bottom right, #fff , #555); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(to bottom right, #fff , #555); /* Standard syntax */
+	background: -webkit-linear-gradient(left top, #ccc , #003366); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(bottom right, #ccc, #003366); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(bottom right, #ccc, #003366); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(to bottom right, #ccc , #003366); /* Standard syntax */
+	box-shadow: 7px 7px 5px #000;
+}
+
+#mainRight:hover #count {
+	visibility: visible;
 }
 
 #footer {
-	top: 20px;
+	position: fixed;
+	bottom: 0px;
 	overflow: hidden;
-}
-#footer p {
+	width: 100%;
+	border: 1px solid #555;
+	max-height: 40px;
 	padding: 10px;
+	text-align: center;
+}
+
+#backFooter {
+	position: relative;
+	height: 50px;
+	width: 100%;
+	float: left;
+}
+
+#iframe {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	background: black;
+	opacity: 0.9;
+	top: 0px;
+	left: 0px;
+	z-index: 200;
+	visibility: hidden;
+}
+
+#iframe iframe {
+	position: relative;
+	top: 30px;
+	left:430px;
+	z-index: 201;
+	min-height: 520px;
+	min-width: 500px;
+	background: white;
+	opacity: 1;
 }

@@ -11,6 +11,8 @@
 			<jsp:include page="closeSession.jsp" /><%
 		} else if (action.equalsIgnoreCase("getValues")) {%>
 			<jsp:include page="getValues.jsp" /><%
+		}  else if (action.equalsIgnoreCase("howTo")) {%>
+			<jsp:include page="howTo.jsp" /><%
 		} else {%>
 			<jsp:include page="error.jsp" /><%
 		}
