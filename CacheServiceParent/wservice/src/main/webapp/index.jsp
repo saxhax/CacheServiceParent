@@ -1,5 +1,3 @@
 <html>
-<body>
-<h2>Cache Service!</h2>
-</body>
+	<jsp:include page="login.jsp" />
 </html>

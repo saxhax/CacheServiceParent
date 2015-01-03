@@ -1,12 +1,16 @@
 package com.unsa.pmf.ws.service.cache.impl;
 
+import java.io.IOException;
 import java.rmi.Naming;
 import java.util.List;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.unsa.pmf.ws.service.Service;
 import com.unsa.pmf.ws.service.cache.CacheService;
@@ -66,6 +70,16 @@ public class CacheServiceImpl extends HttpServlet implements CacheService{
 		}
 		RemoteServer service = getRemoteServer();
 		service.closeSession(session);
+	}
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		super.doGet(req, resp);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		super.doPost(req, resp);
 	}
 	
 	private RemoteServer getRemoteServer() throws Exception{

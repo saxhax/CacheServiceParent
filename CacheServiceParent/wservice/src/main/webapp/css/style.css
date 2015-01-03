@@ -1,0 +1,206 @@
+* {
+	padding: 0px;
+	margin: 0px;
+}
+
+.background {
+  background: -webkit-linear-gradient(left top, #ccc , #003366); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, #ccc, #003366); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, #ccc, #003366); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, #ccc , #003366); /* Standard syntax */	
+}
+
+.bg {
+  background: -webkit-linear-gradient(left top, #fff , #555); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, #fff , #555); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, #fff , #555); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, #fff , #555); /* Standard syntax */	
+}
+
+.minWidth{
+	min-width: 1081px;
+}
+
+.shadow {
+    box-shadow: 7px 7px 5px #888;
+}
+
+.radius {
+    border-radius: 8px;
+}
+
+.border {
+	border: 1px solid #555;
+}
+
+#login form {
+	position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 250px;
+	width: 23%;
+	height: 23%;
+	min-height: 180px;
+	min-width: 300px;
+    background-color: #888;
+}
+
+#login form h2 {
+	text-align: center;
+	color: black;
+	font-size: 15px;
+	padding: 20px;
+}
+
+#login form .row {
+	display: block;
+	padding: 10px;
+}
+
+#login form .row input{
+	float: right;
+}
+
+#login form .row label{
+	margin-left: 10px;
+}
+
+#submit{
+	width: 100px;
+	height: 25px;
+}
+
+#header {
+	background: url(../images/header/header.gif) top center repeat-x;
+	position: relative;
+    margin-left: auto;
+    margin-right: auto;
+	margin-top: 20px;
+	width: 80%;
+	height: 100px;
+}
+
+#header h1 {
+	position: relative;
+    top: 30px;
+    left: 30px;
+	color: greenyellow;
+	font-weight: 900;
+	font-size: 45px;
+}
+
+#menu {
+	position: relative;
+    margin-left: auto;
+    margin-right: auto;
+	margin-top: 20px;
+	width: 80%;
+	height: 40px;
+	overflow: hidden;
+}
+
+#menu div {
+	position: relative;
+	display: inline;
+	padding: 3%;
+	float: left;
+	height: 100%;
+	color: black;
+	padding: 10px 3% 0% 3%;
+}
+
+#menu div:hover{
+  background: -webkit-linear-gradient(left top, #fff , #555); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, #fff , #555); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, #fff , #555); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, #fff , #555); /* Standard syntax */
+  border: 1px solid #555;
+}
+
+#footer {
+	position: relative;
+    margin-left: auto;
+    margin-right: auto;
+	margin-bottom: 20px;
+	width: 80%;
+	min-height: 30px;
+}
+
+#createService {
+	padding: 20px;
+}
+
+#createService .row {
+	padding: 10px;
+}
+
+#createService h2 {
+	padding: 10px;
+}
+
+#createService h2 {
+	padding: 10px;
+}
+
+#main {
+	position: relative;
+    margin-left: auto;
+    margin-right: auto;
+	margin-top: 20px;
+	width: 80%;
+	height: 380px;
+}
+
+#mainleft {
+	position: relative;
+    margin-left: auto;
+    margin-right: auto;
+	width: 70%;
+	height: 360px;
+	float: left;
+	overflow: hidden;
+}
+
+#mainLeft .session {
+	width: 60%;
+}
+
+#mainLeft .session .row input{
+	width: 250px;
+	float: right;
+}
+
+#mainRight{
+	position: relative;
+    margin-left: auto;
+    margin-right: auto;
+	width: 27%;
+	height: 360px;
+	float: right;
+	overflow: hidden;
+}
+
+#mainRight ul {
+	list-style: none;
+}
+
+#mainRight ul li {
+	padding: 10px;
+	height: 32px;
+	text-align: center;
+	color: white;
+}
+
+#mainRight ul li:hover{
+  background: -webkit-linear-gradient(left top, #fff , #555); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, #fff , #555); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, #fff , #555); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, #fff , #555); /* Standard syntax */
+}
+
+#footer {
+	overflow: hidden;
+}
+#footer p {
+	padding: 10px;
+}
