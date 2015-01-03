@@ -7,6 +7,8 @@
 			<jsp:include page="getSession.jsp" /><%
 		} else if (action.equalsIgnoreCase("putValues")) {%>
 			<jsp:include page="putValues.jsp" /><%
+		} else if (action.equalsIgnoreCase("closeSession")) {%>
+			<jsp:include page="closeSession.jsp" /><%
 		} else {%>
 			<jsp:include page="error.jsp" /><%
 		}

@@ -39,7 +39,7 @@ public class Dal {
 	 * @param session
 	 */
 	public void removeSession(Session session){
-		client.remove(Mapper.getSession(session));
+		client.remove(session.getSessionId());
 	}
 	
 	/**

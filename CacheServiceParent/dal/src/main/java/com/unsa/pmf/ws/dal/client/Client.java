@@ -1,5 +1,6 @@
 package com.unsa.pmf.ws.dal.client;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -36,9 +37,10 @@ public class Client {
 	 * Remove entity
 	 * @param entity
 	 */
-	public void remove(SQLEnitiy entity){
+	public void remove(String id){
 		tx.begin();
-    	manager.remove(entity);
+		Query query = manager.createQuery("DELETE FROM Session s WHERE id='" + id + "'");
+		query.executeUpdate();
         tx.commit();
 	}
 	
@@ -52,7 +54,7 @@ public class Client {
 	    List<Session> storedSessions = (List<Session>) query.getResultList();
 	    for (Session session : storedSessions){
 	    	if (sessions.containsKey(session.getName())){
-	    		remove(session);
+	    		remove(session.getId());
 	    	} else {
 	    		sessions.put(session.getName(), Mapper.getSession(session));
 	    	}
@@ -81,29 +83,10 @@ public class Client {
 	}
 	
 	
-	public static void main(String[] args) { 
-		Date date = new Date();
-		System.out.println(date);
+	public static void main(String[] args) {
 		Client client = new Client();
-		System.out.println(client.getDataByValue("value888"));
-		System.out.println(new Date());
-		System.out.println(System.currentTimeMillis() - date.getTime());
-	}
-	public static void main3(String[] args) { 
-		Date date = new Date();
-		System.out.println(date);
-		Client client = new Client();
-		for (int i = 0; i < 80000; i++) {
-			Data data = new Data();
-			data.setDataKey("key1");
-			data.setDataValue("value" + i);
-			client.store(data);
-			if (i % 100 == 0) {
-				System.out.println(System.currentTimeMillis() - date.getTime());
-			}
-		}
-		System.out.println(new Date());		
-		System.out.println(System.currentTimeMillis() - date.getTime());
-
+		Session session = new Session();
+		session.setId("cc66d3d3-b7db-454d-b19a-0bfb92117517");
+		client.remove(session.getId());
 	}
 }
