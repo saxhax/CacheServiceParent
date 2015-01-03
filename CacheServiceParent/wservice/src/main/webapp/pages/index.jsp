@@ -8,7 +8,7 @@
 		    if (action == null || action.isEmpty()) {
 		    	error = true;
 		    } else {
-			    String actions[] = {"createService", "getSession", "putValues", "closeSession"};
+			    String actions[] = {"createService", "getSession", "putValues", "closeSession", "getValues"};
 			    for (String validAction : actions) {
 			    	if (validAction.equalsIgnoreCase(action)) {
 			    		contain = true;
