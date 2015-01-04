@@ -56,8 +56,8 @@
 						<input type="text" name="sessionName"></input>
 					</div>
 				</fieldset>
-				<span style="padding:10px 0px 5px 280px;"><strong>K</strong>ey/<strong>V</strong>alue fields</span>
-				<fieldset class="shadow getValues">
+				<fieldset class="shadow putValues">
+				<legend><span><strong>K</strong>ey/<strong>V</strong>alue fields</span></legend>
 				<% 
 				for (int i = 0; i < numberOfFields; i++) {
 				%>

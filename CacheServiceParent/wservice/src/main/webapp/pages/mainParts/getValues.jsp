@@ -52,32 +52,32 @@
 		if (data == null) {
 		%>
 			<form action="index.jsp?action=getValues" method="post">
-				<div ng-app="" ng-init="sessionId=''; sessionName=''" >
+				<div>
 					<h2>Get values for specific filter and session</h2>
 					<fieldset class="field shadow">
 						<legend> Session from server</legend>
 						<div class="row">
 							<label>Session ID: </label> 
-							<input type="text" name="sessionId" ng-model="sessionId"></input>
+							<input type="text" name="sessionId"></input>
 						</div>
 						<div class="row">
 							<label>Service name: </label> 
-							<input type="text" name="sessionName" ng-model="sessionName"></input>
+							<input type="text" name="sessionName"></input>
 						</div>
 					</fieldset>
 					<fieldset class="field shadow">
 						<legend> Filter values</legend>
 						<div class="row">
 							<label>Key: </label> 
-							<input type="text" name="key" ng-model="key"></input>
+							<input type="text" name="key"></input>
 						</div>
 						<div class="row">
 							<label>Value: </label> 
-							<input type="text" name="value" ng-model="value"></input>
+							<input type="text" name="value"></input>
 						</div>
 						<div class="row">
 							<label>Limit rows: </label> 
-							<input type="text" name="limit" ng-model="limit"></input>
+							<input type="text" name="limit"></input>
 						</div>
 					</fieldset>
 				</div>
@@ -128,4 +128,22 @@
 	<%
 		}
 	%>
+	<div ng-app="getValuesFilterModule">
+		<div ng-controller="getValuesController as ctrl">
+			<input ng-init="value=''" ng-model="value" />
+			<div ng-repeat="entry in ctrl.filteredArray(value)">
+				<fieldset class="field shadow half">
+					<div class="row">
+						<label>K: </label> 
+						<input type="text" name="key" value="{{entry.key}}" readonly></input>
+					</div>
+					<div class="row">
+						<label>V: </label> 
+						<input type="text" name="key" value="{{entry.value}}" readonly></input>
+					</div>
+				</fieldset>
+				<p>{{entry.key}}</p>
+			</div>
+		</div>
+	</div>
 </div>
