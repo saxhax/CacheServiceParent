@@ -19,7 +19,13 @@ function goToWithPromot(link) {
 }
 
 function addBorderToLastRightSide(id) {
-	document.getElementById(id).setAttribute("class", "border blackShadow bg radius");
+	try {
+		document.getElementById(id + "Right").setAttribute("class", "border blackShadow bg radius");
+		} catch (error){}
+	try {
+		document.getElementById(id + "Menu").style.background="#888";
+		} catch (error){}
+	
 }
 
 function openIframe(iframe) {

@@ -14,8 +14,8 @@
 		    String sessionName = request.getParameter("sessionName");
 		    String sessionId = request.getParameter("sessionId");
 		    numberOfFields = Integer.parseInt(request.getParameter("count"));
-		    if (numberOfFields == 0) {
-		    	throw new Exception("Number of fields missing");
+		    if (numberOfFields <= 0 || numberOfFields > 100) {
+		    	numberOfFields = 3;
 		    }
 		   
 		    parameter = (sessionName == null || sessionName.isEmpty());
@@ -43,30 +43,31 @@
 		}
 	%>
 		<form action="index.jsp?action=putValues&count=<%=numberOfFields %>" method="post">
-			<div ng-app="" ng-init="sessionId=''; sessionName=''" >
+			<div>
 				<h2>Put session and values</h2>
 				<fieldset class="field shadow">
 					<legend> Session from server</legend>
 					<div class="row">
 						<label>Session ID: </label> 
-						<input type="text" name="sessionId" ng-model="sessionId"></input>
+						<input type="text" name="sessionId"></input>
 					</div>
 					<div class="row">
 						<label>Service name: </label> 
-						<input type="text" name="sessionName" ng-model="sessionName"></input>
+						<input type="text" name="sessionName"></input>
 					</div>
 				</fieldset>
+				<p><strong>K</strong>ey/<strong>V</strong>alue fields</p>
 				<% 
 				for (int i = 0; i < numberOfFields; i++) {
 				%>
-					<fieldset class="field shadow">
+					<fieldset class="field shadow half">
 						<legend> Values for cache number: <%=(i+1) %></legend>
 						<div class="row">
-							<label>Key: </label> 
+							<label>K: </label> 
 							<input type="text" name="key<%=i %>"></input>
 						</div>
 						<div class="row">
-							<label>Value: </label> 
+							<label>V: </label> 
 							<input type="text" name="value<%=i %>"></input>
 						</div>
 					</fieldset>

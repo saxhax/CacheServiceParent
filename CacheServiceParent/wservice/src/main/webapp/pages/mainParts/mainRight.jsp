@@ -20,6 +20,6 @@
 		%>
 	</select>
 	<script>
-	addBorderToLastRightSide("<%=request.getParameter("action") %>Right");
+	addBorderToLastRightSide("<%=request.getParameter("action") %>");
 	</script>
 </div>

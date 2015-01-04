@@ -134,7 +134,7 @@
 }
 
 #menu div:hover{
-	background: #aaa;
+	background: #aaa !important;
 	color: black;
 }
 
