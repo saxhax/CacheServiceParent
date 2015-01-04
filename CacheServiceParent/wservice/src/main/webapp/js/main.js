@@ -1,3 +1,5 @@
+var array = new Array();
+
 function goTo(link) {
 	window.open(link, '_self', false);
 }
@@ -41,15 +43,7 @@ function closeIframe(iframe) {
 
 angular.module('getValuesFilterModule', []).
   controller('getValuesController', ['filterFilter', function(filterFilter) {
-    this.array = [
-      {key: 'Tobias', value: 'thi'},
-      {key: 'Jeff', value: 'sdf'},
-      {key: 'Brian', value: 'sadfsaf'},
-      {key: 'Igor', value: 'asdf'},
-      {key: 'James', value: 'asdf'},
-      {key: 'Brad', value: 'asdf'}
-    ];
     this.filteredArray = function(value) {
-      return filterFilter(this.array, value);
+      return filterFilter(array, value);
     };
   }]);

@@ -159,20 +159,19 @@
 	color: black;
 }
 
-#createService {
+#common {
 	padding: 20px;
+	text-align: center;
 }
 
-#createService .row {
+#common .row {
 	padding: 10px;
+	text-align: left;
 }
 
-#createService h2 {
+#common h2 {
 	padding: 10px;
-}
-
-#createService h2 {
-	padding: 10px;
+	text-align: center;
 }
 
 #main {
@@ -194,6 +193,7 @@
 	min-height: 360px;
 	float: left;
 	overflow: hidden;
+	padding-bottom: 20px;
 }
 
 #mainLeft .field {

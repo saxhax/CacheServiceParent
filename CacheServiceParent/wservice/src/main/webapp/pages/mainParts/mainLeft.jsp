@@ -1,4 +1,4 @@
-<div id="createService">
+<div id="common">
 	<%
 		String action = request.getParameter("action");
 		if (action.equalsIgnoreCase("createService")) {
