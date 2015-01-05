@@ -31,7 +31,7 @@
 	<div class="row">
 		<label>We need session for getting values form cache. 
 		We can first get session as describe before. First we should set key and value which application
-		should find. If we sent empty key and value application will return all rows. If not, application
+		should find. If we send empty key and value application will not return all rows. If we send non-empty key and value, application
 		 will find all rows which contains specified field.</label>
 	</div>
 </fieldset>

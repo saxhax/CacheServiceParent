@@ -13,7 +13,6 @@
 	    Session sessionFromServer = null;
 		String message = null;
 		boolean parameter = false;
-		boolean ajsFilter = false;
 		Data data = null;
 		try {
 		    String sessionName = request.getParameter("sessionName");
@@ -25,11 +24,6 @@
 		    	limit = Integer.parseInt(request.getParameter("limit"));
 		    } catch (Exception e) {
 		    	limit = 10;
-		    }
-		    try {
-		    	ajsFilter = request.getParameterMap().containsKey("ajsFilter");
-		    } catch (Exception e) {
-		    	ajsFilter = false;
 		    }
 		    parameter = (sessionName == null || sessionName.isEmpty());
 		    parameter = (parameter || sessionId == null || sessionId.isEmpty());
@@ -85,10 +79,6 @@
 							<label>Limit rows: </label> 
 							<input type="text" name="limit"></input>
 						</div>
-						<div class="row">
-							<label>Enable filtering: </label> 
-							<input style="float: none; width: 120px" type="checkbox" name="ajsFilter" checked></input>
-						</div>
 					</fieldset>
 				</div>
 				<div class="row">
@@ -100,76 +90,56 @@
 		} else {
 		%>
 			<h2>Data from cache service</h2>
-		<%
-		if (ajsFilter) {
-		%>
 			<script>
 				array = new Array();
 				<%
 					int i = 0;
 					for (int row = 0; row < data.getFoundRows().size(); row++) {
 						List<Field> fields = data.getFoundRows().get(row).getFields();
+						%>
+						var rowArray = new Array();
+						<%
 						for (int field = 0; field < fields.size(); field++) {
 							%>
-							array[<%=i %>] = { key : '<%=fields.get(field).getKey() %>', value : '<%=fields.get(field).getValue() %>', row : '<%=row + 1 %>', field : '<%=field + 1 %>' };
+							rowArray[<%=field %>] = { key : '<%=fields.get(field).getKey() %>', value : '<%=fields.get(field).getValue() %>', field : '<%=field + 1 %>' };
 							<%
-							i++;
 						}
+						%>
+						array[<%=row %>] = rowArray;
+						rows[<%=row %>] = <%=row %>;
+						<%
 					}
 				%>
 			</script>
 			<div ng-app="getValuesFilterModule">
 				<div ng-controller="getValuesController as ctrl">
-					<div style="padding-left: 20px;">
+					<div style="padding-left: 20px; padding-bottom: 20px;">
 						<lable>Filter: </lable>
 						<input ng-init="value=''" ng-model="value" />
 					</div>
-					<div ng-repeat="entry in ctrl.filteredArray(value)">
-						<fieldset class="field shadow half">
-							<legend>Row: {{entry.row}}, Field: {{entry.field}}</legend>
-							<div class="row">
-								<label>K: </label> 
-								<input type="text" name="key" value="{{entry.key}}" readonly></input>
-							</div>
-							<div class="row">
-								<label>V: </label> 
-								<input type="text" name="key" value="{{entry.value}}" readonly></input>
+					
+					<div ng-repeat="row in ctrl.rows()">
+						<fieldset class="shadow getValues">
+							<legend>Row: {{row}}</legend>
+						  	<span><strong>K</strong>ey/<strong>V</strong>alue fields</span>
+							<div ng-repeat="entry in ctrl.filteredArray(value, row)">
+								<fieldset class="field shadow half">
+									<legend>Field: {{entry.field}}</legend>
+									<div class="row">
+										<label>K: </label> 
+										<input type="text" name="key" value="{{entry.key}}" readonly></input>
+									</div>
+									<div class="row">
+										<label>V: </label> 
+										<input type="text" name="key" value="{{entry.value}}" readonly></input>
+									</div>
+								</fieldset>
 							</div>
 						</fieldset>
 					</div>
 				</div>
 			</div>
-			<br><br>
 		<%
-		} else {
-			int rowCount = 1;
-			for (Row row : data.getFoundRows()) {
-			%>
-				<fieldset class="shadow getValues"><legend>Row: <%=rowCount %></legend>
-					  <span style="padding-left: 280px;"><strong>K</strong>ey/<strong>V</strong>alue fields</span><%
-					int fieldCount = 1;
-					for (Field field : row.getFields()) {
-					%>
-						<div>
-							<fieldset class="field shadow half">
-							    <legend><%=fieldCount %></legend>
-								<div class="row">
-									<label>K: </label> 
-									<input type="text" name="key" value="<%=field.getKey() %>" readonly></input>
-								</div>
-								<div class="row">
-									<label>V: </label> 
-									<input type="text" name="key" value="<%=field.getValue() %>" readonly></input>
-								</div>
-							</fieldset>
-						</div>
-					<%
-					fieldCount++;
-					}
-					rowCount++;
-					%></fieldset><%
-				}
-			}
 		}
 		if (message != null) {%>
 			<fieldset class="field shadow">

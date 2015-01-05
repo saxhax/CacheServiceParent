@@ -1,4 +1,5 @@
 var array = new Array();
+var rows = new Array();
 
 function goTo(link) {
 	window.open(link, '_self', false);
@@ -43,7 +44,10 @@ function closeIframe(iframe) {
 
 angular.module('getValuesFilterModule', []).
   controller('getValuesController', ['filterFilter', function(filterFilter) {
-    this.filteredArray = function(value) {
-      return filterFilter(array, value);
+    this.filteredArray = function(value, row) {
+    	return filterFilter(array[row], value);
     };
+    this.rows = function() {
+        return rows;
+      };
   }]);
