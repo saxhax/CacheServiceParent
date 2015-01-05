@@ -37,4 +37,10 @@ public class Session implements Serializable{
     	}
 		return sessionValid;
 	}
+	
+	public String toString(){
+		return "sessionId='" + sessionId + "'," + 
+			   " sessionName='" + sessionName + "'," + 
+			   " sessionValid='" + sessionValid + "'";
+	}
 }
