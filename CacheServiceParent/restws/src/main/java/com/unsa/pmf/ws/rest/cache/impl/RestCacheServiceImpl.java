@@ -1,17 +1,20 @@
 package com.unsa.pmf.ws.rest.cache.impl;
 
 import java.rmi.Naming;
-import java.util.List;
 
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.unsa.pmf.ws.common.config.Configurations;
+import com.unsa.pmf.ws.common.data.Data;
 import com.unsa.pmf.ws.common.data.Field;
+import com.unsa.pmf.ws.common.filter.Condition;
 import com.unsa.pmf.ws.common.filter.Filter;
 import com.unsa.pmf.ws.common.rmi.RemoteServer;
 import com.unsa.pmf.ws.common.session.Session;
@@ -56,56 +59,102 @@ public class RestCacheServiceImpl implements CacheService, Service{
 
 	@GET
 	@Path("/{pathParameter}/createCacheService")
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response createCacheService(@QueryParam("name") String name) throws Exception{
 		Configurations configurations = new Configurations();
 		configurations.setName(name);
 		Validate.validateConfiguration(configurations);
 		RemoteServer service = getRemoteServer();
 		Session session = service.createCacheService(configurations);
-		return Response.status(200).entity(session.toString()).build();
+		return Response.status(200).entity(session).build();
 	}
 
 	@GET
 	@Path("/{pathParameter}/getCacheServiceSession")
-	public Response getCacheServiceSession(String name) throws Exception{
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getCacheServiceSession(@QueryParam("name") String name) throws Exception{
 		RemoteServer service = getRemoteServer();
-		return null;	
+		Session session = service.getCacheService(name);
+		return Response.status(200).entity(session).build();
 	}
 
 	@GET
 	@Path("/{pathParameter}/putValues")
-	public Response putValues(Session session, List<Field> values) throws Exception {
-		if (!Validate.validateSession(session)){
-		}
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response putValues(@QueryParam("sessionId") String sessionId, 
+			@QueryParam("name") String name,
+			@QueryParam("count") String count,
+			@QueryParam("values") String values) throws Exception {
+		Session session = new Session();
+		session.setSessionId(sessionId);
+		session.setSessionName(name);
+		Validate.validateSession(session);
 		RemoteServer service = getRemoteServer();
-		return null;	
+		//: TODO session = service.putValues(session, values)
+		return Response.status(200).entity(session).build();
 	}
 
 	@GET
 	@Path("/{pathParameter}/getValues")
-	public Response getValues(Session session, Filter filter) throws Exception{
-		if (!Validate.validateSession(session)){
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getValues(@QueryParam("sessionId") String sessionId, 
+			@QueryParam("name") String name,
+			@QueryParam("limit") String limit,
+			@QueryParam("key") String key,
+			@QueryParam("value") String value) throws Exception{
+		Session session = new Session();
+		session.setSessionId(sessionId);
+		session.setSessionName(name);
+		Validate.validateSession(session);
+		int limitValue = 3;
+		try {
+			limitValue = Integer.parseInt(limit);
+		} catch (Exception e) {
+			limitValue = 10;
+		} finally {
+			if (limitValue > 100 || limitValue < 1) {
+				limitValue = 3;
+			}
 		}
+		Filter filter = new Filter();
+		Condition condition = new Condition();
+		condition.setLimit(limitValue);
+		Field field = new Field();
+		field.setKey(key);
+		field.setValue(value);
+		filter.setCondition(condition);
+		filter.getFindFields().add(field);
 		RemoteServer service = getRemoteServer();
-		return null;	
+		Data data = service.getValues(session, filter);
+		return Response.status(200).entity(data).build();
 	}
 
 	@GET
-	@Path("/{pathParameter}/getValues")
-	public Response closeSession(Session session) throws Exception{
-		if (!Validate.validateSession(session)){
-		}
+	@Path("/{pathParameter}/closeSession")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response closeSession(@QueryParam("sessionId") String sessionId, 
+			@QueryParam("name") String name) throws Exception {
+		Session session = new Session();
+		session.setSessionId(sessionId);
+		session.setSessionName(name);
+		Validate.validateSession(session);
 		RemoteServer service = getRemoteServer();
 		service.closeSession(session);
-		return null;	
+		return Response.status(200).entity("true").build();	
 	}
 
 	@GET
 	@Path("/{pathParameter}/getName")
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response getName() {
 		return Response.status(200).entity(Service.CACHE).build();
 	}
 	
+	/**
+	 * Get RMI connection
+	 * @return
+	 * @throws Exception
+	 */
 	private RemoteServer getRemoteServer() throws Exception{
 		try {
 			RemoteServer remoteServer;

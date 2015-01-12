@@ -1,6 +1,7 @@
 package com.unsa.pmf.ws.common.filter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.unsa.pmf.ws.common.data.Field;
@@ -10,7 +11,9 @@ public class Filter implements Serializable{
 	private Condition condition;
 	private List<Field> findFields;
 
-	public Filter(){}
+	public Filter(){
+		findFields = new ArrayList<Field>();
+	}
 	
 	public Filter(List<Field> findFields) {
 		this.findFields = findFields;

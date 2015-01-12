@@ -1,13 +1,6 @@
 package com.unsa.pmf.ws.rest.cache;
 
-import java.util.List;
-
 import javax.ws.rs.core.Response;
-
-import com.unsa.pmf.ws.common.session.Session;
-import com.unsa.pmf.ws.common.config.Configurations;
-import com.unsa.pmf.ws.common.data.Field;
-import com.unsa.pmf.ws.common.filter.Filter;
 
 public interface CacheService{
 
@@ -33,7 +26,7 @@ public interface CacheService{
 	 * @param values
 	 * @return
 	 */
-	public Response putValues(Session session, List<Field> values) throws Exception;
+	public Response putValues(String sessionId, String name, String count, String values) throws Exception;
 	
 	/**
 	 * Get values with specific filter
@@ -41,11 +34,11 @@ public interface CacheService{
 	 * @param filter
 	 * @return
 	 */
-	public Response getValues(Session session, Filter filter) throws Exception;
+	public Response getValues(String sessionId, String name, String limit, String key, String value) throws Exception;
 	
 	/**
 	 * Close session
 	 * @param session
 	 */
-	public Response closeSession(Session session) throws Exception;
+	public Response closeSession(String sessionId, String name) throws Exception;
 }
