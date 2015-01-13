@@ -69,6 +69,23 @@ public class MongoConnection {
 		return data;
 	}
 	
+	/**
+	 * Find All
+	 * @param collectionName
+	 * @return
+	 * @throws UnknownHostException
+	 */
+	public List<DBObject> getAll(String collectionName) throws UnknownHostException{
+		List<DBObject> data = new ArrayList<DBObject>();
+		DBCursor cursor;
+		cursor = getCollection(collectionName).find();
+
+		while(cursor.hasNext()){
+			data.add(cursor.next());
+		}
+		return data;
+	}
+	
 	/** Delete Collection
 	 * @param name
 	 * @throws UnknownHostException

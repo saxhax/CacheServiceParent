@@ -8,9 +8,13 @@ public class Row implements Serializable{
 	private static final long serialVersionUID = -9097096452832154266L;
 
 	private List<Field> fields;
-	
+
 	public Row(){
 		fields = new ArrayList<Field>();
+	}
+	
+	public Row(List<Field> fields){
+		this.fields = fields;
 	}
 
 	public List<Field> getFields() {

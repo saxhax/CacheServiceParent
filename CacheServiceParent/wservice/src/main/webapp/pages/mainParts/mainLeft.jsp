@@ -25,6 +25,10 @@
 	%>
 			<jsp:include page="howTo.jsp" />
 	<%
+		}  else if (action.equalsIgnoreCase("statistic")) {
+	%>
+			<jsp:include page="statistic.jsp" />
+	<%
 		} else {
 	%>
 			<jsp:include page="error.jsp" /><%

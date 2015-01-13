@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.mongodb.DBObject;
+import com.unsa.pmf.ws.common.data.Row;
 import com.unsa.pmf.ws.common.data.Field;
 import com.unsa.pmf.ws.common.filter.Filter;
 import com.unsa.pmf.ws.dal.map.Mapper;
@@ -54,6 +55,22 @@ public class MongoBC {
 		List<DBObject> list = new MongoConnection().get(Mapper.generateObject(filter.getFindFields()), collectionName, filter.getCondition());
 		for (DBObject object : list){
 			result.add(Mapper.generateList(object));
+		}
+		return result;
+	}
+	
+	/**
+	 * Get all data
+	 * @param data
+	 * @param collectionName
+	 * @return
+	 * @throws UnknownHostException 
+	 */
+	public List<Row> getAll(String collectionName) throws Exception{
+		List<Row> result = new ArrayList<Row>();
+		List<DBObject> list = new MongoConnection().getAll(collectionName);
+		for (DBObject object : list){
+			result.add(new Row(Mapper.generateList(object)));
 		}
 		return result;
 	}

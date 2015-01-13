@@ -5,8 +5,8 @@ import java.net.UnknownHostException;
 import java.util.List;
 import java.util.Map;
 
-import com.unsa.pmf.ws.common.data.Data;
 import com.unsa.pmf.ws.common.data.Row;
+import com.unsa.pmf.ws.common.data.Data;
 import com.unsa.pmf.ws.common.data.Field;
 import com.unsa.pmf.ws.common.filter.Filter;
 import com.unsa.pmf.ws.common.session.Session;
@@ -79,5 +79,16 @@ public class Dal {
 			data.getFoundRows().add(row);
 		}
 		return data;
+	}
+
+	/**
+	 * Get all data for collection names
+	 * @param keySet
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Row> getAll(String collectionName) throws Exception{
+		MongoBC bc = new MongoBC();
+		return bc.getAll(collectionName);
 	}
 }
