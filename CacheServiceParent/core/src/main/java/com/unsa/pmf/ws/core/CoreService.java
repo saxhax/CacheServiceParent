@@ -17,11 +17,12 @@ import com.unsa.pmf.ws.common.data.Data;
 import com.unsa.pmf.ws.common.data.Field;
 import com.unsa.pmf.ws.common.data.Row;
 import com.unsa.pmf.ws.common.session.SessionFactory;
+import com.unsa.pmf.ws.core.storage.Storage;
 import com.unsa.pmf.ws.dal.Dal;
 
 public class CoreService {
 	private static Map<String, Session> activeSessions = null;
-	private static Map<String, List<Row>> cache = null;
+	private static Map<String, Storage> cache = null;
 	
 	public static void main(String[] args) throws Exception {
 		CoreService service = new CoreService();
@@ -40,10 +41,10 @@ public class CoreService {
 			activeSessions = new Dal().getSessions();
 		}
 		if (cache == null) {
-			cache = new HashMap<String, List<Row>>();
+			cache = new HashMap<String, Storage>();
 			Dal dal = new Dal();
 			for (String collectionName : activeSessions.keySet()) {
-				cache.put(collectionName, dal.getAll(collectionName));
+				cache.put(collectionName, new Storage(dal.getAll(collectionName)));
 			}
 		}
 	}
@@ -64,7 +65,7 @@ public class CoreService {
 			dal.createCacheService(configurations.getName());
 			dal.storeSession(session);
 			activeSessions.put(session.getSessionName(), session);
-			cache.put(session.getSessionName(), new ArrayList<Row>());
+			cache.put(session.getSessionName(), new Storage(new ArrayList<Row>()));
 		} catch (Exception e) {
 			return null;
 		}
@@ -98,7 +99,7 @@ public class CoreService {
 			if (id.equalsIgnoreCase(session.getSessionId())) {
 				Dal dal = new Dal();
 				dal.put(values, session.getSessionName());
-				cache.get(session.getSessionName()).add(new Row(values));
+				cache.get(session.getSessionName()).put(new Row(values));
 				return session;
 			} else {
 				throw new SessionNotValidException();
@@ -153,11 +154,8 @@ public class CoreService {
 	 */
 	private Data generateData(Filter filter, String sessionName) {
 		Data data = new Data();
-		List<Row> rows = cache.get(sessionName);
-		for (Row row : rows) {
-			if (isAppropriateRow(row, filter)) {
-				data.getFoundRows().add(row);
-			}
+		for (Field field : filter.getFindFields()) {
+			data.setFoundRows(cache.get(sessionName).getRows(field));
 		}
 		return data;
 	}

@@ -31,8 +31,8 @@
 				<input type="text" name="name"></input>
 			</div>
 			<div class="row">
-				<label>Description: </label> 
-				<input type="text" name="description"></input>
+				<label>Password: </label> 
+				<input type="password" name="Password" value="Password"></input>
 			</div>
 		</fieldset>
 		<div class="row">
